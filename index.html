@@ -1,12 +1,17 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MARGARETTE DELAROSA</title>
+  <title>Margarette Dela Rosa</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background: linear-gradient(to right, #bfd7ed, #60a3d9);
       min-height: 100vh;
@@ -15,17 +20,19 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
+    .about-img {
+      width: 350px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
     .about-container {
       display: flex;
       align-items: center;
       gap: 2rem;
       flex-wrap: wrap;
       margin-top: 3rem;
-    }
-
-    .about-img {
-      max-width: 300px;
-      border-radius: 15px;
     }
 
     .about-text {
@@ -43,7 +50,7 @@
     }
 
     .custom-card {
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       border-radius: 12px;
       margin-top: 20px;
     }
@@ -59,18 +66,19 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Margarette</a>
+      <a class="navbar-brand" href="#home">Margarette</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
@@ -79,23 +87,64 @@
     </div>
   </nav>
 
-  <!-- Intro Section -->
-  <div class="row">
-    <div class="col text-left my-4">
-      <h1 style="font-size: 4.5rem; font-style: oblique; font-weight: bold;">Hi, I'm Margarette!</h1>
-      <h2 style="font-size: 2.5rem;">Student</h2>
-      <p style="font-size: 2rem; font-weight: 300;">Happiness is not about getting all you want, it is about enjoying all you have.</p>
+  <!-- Home Section -->
+  <section id="home" class="container my-5">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h1 style="font-size: 4.5rem; font-style: oblique; font-weight: bold;">Hi, I'm Margarette!</h1>
+        <h2 style="font-size: 2.5rem;">Student</h2>
+        <p style="font-size: 1rem; font-weight: 100;">Hi, my name is Margarette Dela Rosa. I'm currently a second-year
+          IT student with a strong interest in technology and a deep love for reading. I'm passionate about learning new
+          skills and taking on challenges that help me grow both personally and professionally. .</p>
+        <p style="font-size: 1rem; font-weight: 100;">Beyond academics, I enjoy discovering new interests, expanding my
+          knowledge beyond the classroom, and exploring different aspects of life. With a curious mindset and a drive
+          for growth, I'm always open to new experiences that deepen my understanding of both the tech world and the
+          world around me. In my free time, I love to read and connect with others who share similar passions.</p>
+      </div>
+      <div class="col-md-4 text-center">
+        <img src="marga.gif" alt="Marga" class="about-img">
+      </div>
     </div>
-  </div>
+  </section>
 
   <!-- About Section -->
   <section id="about">
     <div class="container about-container">
-      <img src="mjdr.jpg" alt="Margarette" class="about-img">
-      <div class="about-text">
-        <h2>About Me</h2>
-      <p>Margarette Dela Rosa.</p>
-        <h3>Strive not to be a success, but rather to be of value, .</h3>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="about-text">
+            <h2>About Me</h2>
+            <p><strong>Margarette Dela Rosa</strong></p>
+            <h3>Strive not to be a success, but rather to be of value.</h3>
+            <br>
+            <p>A passionate second-year IT student with a strong love for learning, technology, and personal growth. I believe true growth begins outside our comfort zones, and I welcome challenges as opportunities to become stronger. With curiosity and determination, I strive to turn big dreams into reality and inspire others to keep learning and exploring life’s possibilities.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="about-text">
+            <h5>Personal Information</h5>
+            <ul class="list-unstyled">
+              <li><strong>Full Name:</strong> Dela Rosa, Margarette</li>
+              <li><strong>Date of Birth:</strong> August 30, 2005</li>
+              <li><strong>Place of Birth:</strong> Putatan, Muntinlupa City</li>
+              <li><strong>Age:</strong> 19</li>
+              <li><strong>Gender:</strong> Female</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="about-text">
+            <h5>Education</h5>
+            <ul class="list-unstyled">
+              <li><strong>Polytechnic University of the Philippines</strong><br> Bachelor of Information Technology (2023 – Present)</li>
+              <li><strong>Nova Schola Tanauan College</strong><br> Senior High School (2021 – 2023)</li>
+              <li><strong>Janopol Oriental National High School</strong><br> Junior High School (2017 – 2021)</li>
+              <li><strong>Gonzales Elementary School</strong><br> Elementary (2010 – 2017)</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -111,8 +160,6 @@
               <h5 class="card-title">A04</h5>
               <p class="card-text">Hardware device.</p>
               <a href="A04/index.html" class="btn custom-btn">View Project</a>
-
-
             </div>
           </div>
         </div>
@@ -142,7 +189,6 @@
   <section id="contact">
     <div class="container">
       <h2>Contact Me</h2>
-      
       <div class="social-icons">
         <a href="mailto:delarosamargarette7@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
         <a href="https://github.com/margarain" target="_blank"><i class="fab fa-github"></i></a>
@@ -153,4 +199,5 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
