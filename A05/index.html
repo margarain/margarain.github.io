@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to Vigan City</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    /* Hero Section with Background */
+    .hero {
+      position: relative;
+      height: 90vh;
+      overflow: hidden;
+    }
+
+    .hero img.bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 2;
+      color: white;
+      text-align: center;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      text-shadow: 2px 2px 8px #000;
+    }
+
+    .hero-text h1 {
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-text .lead {
+      font-size: 1.5rem;
+    }
+
+    section {
+      padding: 60px 0;
+    }
+
+    .card img {
+      height: 200px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section with Image and Overlay Text -->
+  <div class="hero">
+    <img src="viganbackground.webp" alt="Vigan City" class="bg-img">
+    <div class="hero-text">
+      <h1>Welcome to Vigan City</h1>
+      <p class="lead">A UNESCO World Heritage Site</p>
+    </div>
+  </div>
+
+ <!-- About Section -->
+<section class="container">
+  <h2 class="text-center mb-4">About Vigan City</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <p>Vigan is a well-preserved example of a planned Spanish colonial town in Asia, and it offers a unique glimpse into the past. It is best known for its cobblestone streets, colonial-era architecture, and charming ambiance. It was declared a UNESCO World Heritage Site in 1999 and remains one of the most picturesque cities in the Philippines.</p>
+      <ul>
+        <li>📍 Population: ~53,000</li>
+        <li>🕰️ Founded: 1572</li>
+        <li>🌿 Famous For: Cobblestone streets, Spanish architecture, and the historic <strong>Calle Crisologo</strong></li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <img src="st.paul, vigan.jpg" alt="St. Paul Cathedral, Vigan" class="img-fluid rounded shadow"/>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Attractions -->
+  <section class="bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Top Attractions</h2>
+      <div class="row g-4">
+        <div class="col-md-3">
+          <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Vigan_Streets.jpg" class="card-img-top" alt="Calle Crisologo"/>
+            <div class="card-body">
+              <h5 class="card-title">Calle Crisologo</h5>
+              <p class="card-text">A historic cobblestone street lined with Spanish-era houses, offering a glimpse into Vigan's colonial past.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/UNESCO_World_Heritage_Site%2C_Vigan.jpg" class="card-img-top" alt="Vigan Sunset"/>
+            <div class="card-body">
+              <h5 class="card-title">Vigan Sunset</h5>
+              <p class="card-text">Enjoy a stunning view of the sun setting over the historic city and the tranquil Mestizo River.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Vigan_Church%2C_Ilocos_Sur.jpg" class="card-img-top" alt="St. Paul Cathedral"/>
+            <div class="card-body">
+              <h5 class="card-title">St. Paul Cathedral</h5>
+              <p class="card-text">A stunning example of Baroque architecture with intricate details, located in the heart of Vigan.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Palacio_Real_Vigan.JPG" class="card-img-top" alt="Vigan's Palacio Real"/>
+            <div class="card-body">
+              <h5 class="card-title">Palacio Real</h5>
+              <p class="card-text">The historical residence of the Spanish governor, now a museum showcasing the history of the region.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section class="container">
+    <h2 class="text-center mb-4">Events & Festivals</h2>
+    <ul>
+      <li>🎉 January: <strong>Viva Vigan Binatbatan Festival of the Arts</strong> – A vibrant festival celebrating the culture and heritage of Vigan</li>
+      <li>🎶 October: <strong>Calle Crisologo Festival</strong> – A celebration of Vigan's unique streets and architecture</li>
+      <li>🏞️ December: <strong>Vigan Christmas Festival</strong> – A beautiful display of lights and traditional Christmas celebrations</li>
+    </ul>
+  </section>
+
+  <!-- Travel Info -->
+  <section class="bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Travel Information</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Nearest Airport:</strong> Laoag International Airport (Laoag, Ilocos Norte)</p>
+          <p><strong>Access:</strong> By bus or private car from Manila (~8 hours)</p>
+          <p><strong>Local Transport:</strong> Kalesa (horse-drawn carriage), tricycles, and jeepneys</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Tourist Passes:</strong></p>
+          <ul>
+            <li>Vigan City Tour Package</li>
+            <li>Calle Crisologo Walking Tour</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="container text-center">
+    <h2 class="mb-3">Contact & Resources</h2>
+    <p>Visit the official tourism website: <a href="http://www.vigancity.gov.ph" target="_blank">vigancity.gov.ph</a></p>
+    <p>Emergency Numbers: 🚔 117 (Police), 🚑 911 (Ambulance)</p>
+    <p>Tourist Centers: Vigan Tourism Office, Calle Crisologo, Plaza Salcedo</p>
+  </section>
+
+  <div class="class">
+    <h2 style="my-5, margin-left: 50px;">
+    </h2>
+  </div><a href="../index.html" >&lt; Back</a>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center p-3">
+    &copy; 2025 Vigan Tourism Board 
+  </footer>
+
+</body>
+</html>
