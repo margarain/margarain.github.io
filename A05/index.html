@@ -3,9 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome to Vigan City</title>
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <style>
+    /* Page Background Gradient */
+    body {
+      background: linear-gradient(to right, #bfd7ed, #60a3d9);
+    }
+
     /* Hero Section with Background */
     .hero {
       position: relative;
@@ -60,28 +65,27 @@
     <img src="viganbackground.webp" alt="Vigan City" class="bg-img">
     <div class="hero-text">
       <h1>Welcome to Vigan City</h1>
-      <p class="lead">A UNESCO World Heritage Site</p>
+      <p class="lead">Spanish Colonial Architecture</p>
     </div>
   </div>
 
- <!-- About Section -->
-<section class="container">
-  <h2 class="text-center mb-4">About Vigan City</h2>
-  <div class="row">
-    <div class="col-md-6">
-      <p>Vigan is a well-preserved example of a planned Spanish colonial town in Asia, and it offers a unique glimpse into the past. It is best known for its cobblestone streets, colonial-era architecture, and charming ambiance. It was declared a UNESCO World Heritage Site in 1999 and remains one of the most picturesque cities in the Philippines.</p>
-      <ul>
-        <li>📍 Population: ~53,000</li>
-        <li>🕰️ Founded: 1572</li>
-        <li>🌿 Famous For: Cobblestone streets, Spanish architecture, and the historic <strong>Calle Crisologo</strong></li>
-      </ul>
+  <!-- About Section -->
+  <section class="container">
+    <h2 class="text-center mb-4">About Vigan City</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <p>Vigan is a well-preserved example of a planned Spanish colonial town in Asia, and it offers a unique glimpse into the past. It is best known for its cobblestone streets, colonial-era architecture, and charming ambiance. It was declared a UNESCO World Heritage Site in 1999 and remains one of the most picturesque cities in the Philippines.</p>
+        <ul>
+          <li>📍 Population: ~53,000</li>
+          <li>🕰️ Founded: 1572</li>
+          <li>🌿 Famous For: Cobblestone streets, Spanish architecture, and the historic <strong>Calle Crisologo</strong></li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <img src="calle crisologo.png" alt="St. Paul Cathedral, Vigan" class="img-fluid rounded shadow"/>
+      </div>
     </div>
-    <div class="col-md-6">
-      <img src="st.paul, vigan.jpg" alt="St. Paul Cathedral, Vigan" class="img-fluid rounded shadow"/>
-    </div>
-  </div>
-</section>
-
+  </section>
 
   <!-- Attractions -->
   <section class="bg-light">
@@ -90,7 +94,7 @@
       <div class="row g-4">
         <div class="col-md-3">
           <div class="card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Vigan_Streets.jpg" class="card-img-top" alt="Calle Crisologo"/>
+            <img src="calle crisologo.png" class="card-img-top" alt="Calle Crisologo"/>
             <div class="card-body">
               <h5 class="card-title">Calle Crisologo</h5>
               <p class="card-text">A historic cobblestone street lined with Spanish-era houses, offering a glimpse into Vigan's colonial past.</p>
@@ -99,7 +103,7 @@
         </div>
         <div class="col-md-3">
           <div class="card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/UNESCO_World_Heritage_Site%2C_Vigan.jpg" class="card-img-top" alt="Vigan Sunset"/>
+            <img src="sunsetvigan.jpg" class="card-img-top" alt="Vigan Sunset"/>
             <div class="card-body">
               <h5 class="card-title">Vigan Sunset</h5>
               <p class="card-text">Enjoy a stunning view of the sun setting over the historic city and the tranquil Mestizo River.</p>
@@ -108,7 +112,7 @@
         </div>
         <div class="col-md-3">
           <div class="card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Vigan_Church%2C_Ilocos_Sur.jpg" class="card-img-top" alt="St. Paul Cathedral"/>
+            <img src="st.paul, vigan.jpg" class="card-img-top" alt="St. Paul Cathedral"/>
             <div class="card-body">
               <h5 class="card-title">St. Paul Cathedral</h5>
               <p class="card-text">A stunning example of Baroque architecture with intricate details, located in the heart of Vigan.</p>
@@ -117,10 +121,46 @@
         </div>
         <div class="col-md-3">
           <div class="card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Palacio_Real_Vigan.JPG" class="card-img-top" alt="Vigan's Palacio Real"/>
+            <img src="palacio real.jpg" class="card-img-top" alt="Vigan's Palacio Real"/>
             <div class="card-body">
               <h5 class="card-title">Palacio Real</h5>
               <p class="card-text">The historical residence of the Spanish governor, now a museum showcasing the history of the region.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Food -->
+  <section class="bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Top Foods</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card">
+            <img src="empanada.webp" class="card-img-top" alt="Vigan Empanada"/>
+            <div class="card-body">
+              <h5 class="card-title">Vigan Empanada</h5>
+              <p class="card-text">Vigan's empanada is a crispy fried pastry filled with shredded green papaya, bean sprouts, egg, and longganisa (local sausage). The best place to find this delicious snack is at the Vigan Public Market or Plaza Burgos.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="bagnet.webp" class="card-img-top" alt="Bagnet"/>
+            <div class="card-body">
+              <h5 class="card-title">Bagnet</h5>
+              <p class="card-text">Bagnet is a local version of crispy fried pork belly seasoned with garlic and served with vinegar dip. You can find this dish at many local restaurants and eateries, but the best place to try it is at the famous Cafe Leona in Calle Crisologo.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="pinakbet.webp" class="card-img-top" alt="Pinakbet"/>
+            <div class="card-body">
+              <h5 class="card-title">Pinakbet</h5>
+              <p class="card-text">Pinakbet is a dish made with a mix of local vegetables such as eggplant, bitter melon, squash, and string beans, sautéed with pork and shrimp paste. This dish can be found in most local restaurants and eateries.</p>
             </div>
           </div>
         </div>
@@ -133,6 +173,7 @@
     <h2 class="text-center mb-4">Events & Festivals</h2>
     <ul>
       <li>🎉 January: <strong>Viva Vigan Binatbatan Festival of the Arts</strong> – A vibrant festival celebrating the culture and heritage of Vigan</li>
+      <li>🎉 January: <strong>Vigan City Fiesta and Longganisa Festival</strong> – A vibrant festival which celebrates the local sausage, "longganisa"</li>
       <li>🎶 October: <strong>Calle Crisologo Festival</strong> – A celebration of Vigan's unique streets and architecture</li>
       <li>🏞️ December: <strong>Vigan Christmas Festival</strong> – A beautiful display of lights and traditional Christmas celebrations</li>
     </ul>
@@ -168,13 +209,13 @@
   </section>
 
   <div class="class">
-    <h2 style="my-5, margin-left: 50px;">
-    </h2>
-  </div><a href="../index.html" >&lt; Back</a>
+    <h2 style="my-5; margin-left: 50px;"></h2>
+  </div>
+  <a href="../index.html">&lt; Back</a>
 
   <!-- Footer -->
   <footer class="bg-dark text-white text-center p-3">
-    &copy; 2025 Vigan Tourism Board 
+    &copy; 2025 Vigan Tourism Board  
   </footer>
 
 </body>
