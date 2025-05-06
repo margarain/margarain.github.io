@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>View Dog Breed</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <style>
+    body {
+      background: linear-gradient(to right, #ffb6c1, #e0bbf7, #a1c4fd);
+    }
+
+    .picture-container {
+      width: 100%;
+      height: 100%;
+      max-width: 250px;
+      max-height: 250px;
+      background-color: lightgrey;
+      border-radius: 100px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .picture-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 100px;
+    }
+
+    .card {
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid py-3" style="background-color: rgb(255, 65, 65);">
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <div class="h3 text-white">View Dog Breed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-3">
+    <div class="row justify-content-center" id="container">
+      <!-- Dog breed image will appear here -->
+    </div>
+  </div>
+
+  <script>
+    const getDogBreedImage = async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const breedName = urlParams.get('breed');
+
+      if (!breedName) {
+        alert('No breed specified');
+        return;
+      }
+
+      try {
+        const response = await fetch(`https://dog.ceo/api/breed/${breedName}/images/random`);
+        const dogData = await response.json();
+
+        if (dogData.status !== 'success') {
+          throw new Error('Breed not found');
+        }
+
+        const imageUrl = dogData.message;
+        const breed = breedName.charAt(0).toUpperCase() + breedName.slice(1);
+
+        const mainContainer = document.getElementById('container');
+        mainContainer.innerHTML = `<div class="col-12 text-center">
+          <div class="card text-center p-5 rounded-5 shadow mx-auto">
+            <div class="picture-container mx-auto">
+              <img src="` + imageUrl + `" id="img">
+            </div>
+            <div class="mt-5 h5" id="name">` + breed + `</div>
+          </div>
+        </div>`;
+      } catch (error) {
+        alert('Error: ' + error.message);
+      }
+    }
+
+    getDogBreedImage();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
