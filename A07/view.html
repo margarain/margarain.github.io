@@ -80,13 +80,25 @@
         const breed = breedName.charAt(0).toUpperCase() + breedName.slice(1);
 
         const breedDescriptions = {
-          labrador: "Labradors are friendly, intelligent, and outgoing dogs.",
-          beagle: "Beagles are curious and merry dogs with great tracking instincts.",
-          pug: "Pugs are charming, mischievous, and loving companions.",
-          husky: "Huskies are energetic, free-spirited dogs with a strong pack mentality.",
-        };
+  labrador: "Labradors are friendly, intelligent, and outgoing dogs. They are great family pets and love to swim and fetch.",
+  beagle: "Beagles are curious, merry, and friendly dogs with excellent tracking instincts. They are great with children and other pets.",
+  pug: "Pugs are charming, mischievous, and loving companions. They enjoy affection and are great lap dogs.",
+  husky: "Huskies are energetic, free-spirited dogs with a strong pack mentality. They are known for their striking blue eyes and thick coats.",
+  german: "German Shepherds are courageous, confident, and smart. They are often used in police and military roles for their loyalty and strength.",
+  golden: "Golden Retrievers are kind, trustworthy, and eager-to-please family dogs. They are also excellent guide dogs and therapy animals.",
+  chihuahua: "Chihuahuas are tiny dogs with huge personalities. They are alert, lively, and loyal to their owners.",
+  bulldog: "Bulldogs are calm, courageous, and friendly. They are known for their loose skin, distinctive pushed-in nose, and affectionate nature.",
+  dalmatian: "Dalmatians are active, energetic, and playful dogs. They're known for their unique spotted coats and history as firehouse mascots.",
+  shih: "Shih Tzus are affectionate, outgoing, and gentle lap dogs. They were bred to be royal companions in ancient China.",
+  poodle: "Poodles are intelligent, active, and elegant dogs. They come in standard, miniature, and toy sizes and are excellent at obedience.",
+  rottweiler: "Rottweilers are confident, fearless, and loyal dogs. They are protective of their families and make excellent guard dogs.",
+  boxer: "Boxers are bright, fun-loving, and energetic dogs. They are very loyal and form strong bonds with their families.",
+  dachshund: "Dachshunds are clever, brave, and a little stubborn. Their unique long bodies and short legs make them great burrowers.",
+  pomeranian: "Pomeranians are lively, extroverted, and very smart. They're fluffy, tiny, and have a bold personality."
+};
 
-        const description = breedDescriptions[breedName] || "This is a beautiful dog breed known for its unique traits.";
+const description = breedDescriptions[breedName] || "This is a beautiful dog breed known for its unique traits.";
+
 
         const mainContainer = document.getElementById('container');
         mainContainer.innerHTML = `
@@ -104,6 +116,7 @@
       }
     };
 
+    console.log
     getDogBreedImage();
   </script>
 
