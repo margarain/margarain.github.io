@@ -35,6 +35,8 @@
 /*ADD OR REMOVE LAYERS AS NEEDED*/
 
 #keyart-0 {
+	background-repeat: no-repeat;
+	background-size: cover;
 	background-image: url(img/parallax0.png);
 }
 

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>EZ | Banner</title>
+
+	<!-- Your CSS files -->
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="parallax.css" />
+
+	<!-- Bootstrap CSS for carousel functionality -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+	<script>
+		var state = "off";
+
+		function changeState() {
+			var btn = document.getElementById("btn");
+
+			if (state == "on") {
+				state = "off";
+				btn.classList.remove("btn-primary");
+				btn.classList.add("btn-outline-primary");
+				console.log(false);
+			} else {
+				state = "on";
+				btn.classList.remove("btn-outline-primary");
+				btn.classList.add("btn-primary");
+				console.log(true);
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<section>
+		<div class="keyart" id="parallax">
+			<div class="keyart_layer parallax" id="keyart-0" data-speed="2"></div>
+			<div class="keyart_layer parallax" id="keyart-1" data-speed="5"></div>
+			<div class="keyart_layer parallax" id="keyart-2" data-speed="11"></div>
+			<div class="keyart_layer parallax" id="keyart-3" data-speed="16"></div>
+			<div class="keyart_layer parallax" id="keyart-4" data-speed="26"></div>
+			<div class="keyart_layer parallax" id="keyart-5" data-speed="36"></div>
+			<div class="keyart_layer parallax" id="keyart-6" data-speed="49"></div>
+			<div class="keyart_layer parallax" id="keyart-7" data-speed="69"></div>
+			<div class="keyart_layer" id="keyart-8" data-speed="100"></div>
+			<!-- Front image, in sync with scroll, no need to parallax -->
+			<!-- Add or Remove layers as needed - check Parallax.css for reference -->
+		</div>
+	</section>
+
+	<section class="main-content">
+		<div style="height: 3500px; background-color: rgb(0, 0, 0); color: #fff;">
+			<div class="container-fluid about" id="about">
+				<div class="container">
+					<div class="row text-center">
+						<div class="col-12 mt-5 pt-5">
+							<h1>About Us</h1>
+						</div>
+					</div>
+					<hr />
+					<div class="row">
+						<div class="col-12 col-md-6 py-5">
+							<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+								<div class="carousel-inner my-5">
+									<div class="carousel-item active">
+										<img src="character/ttw.jpg" class="d-block w-100 img-fluid"
+											alt="Taming the Waves" />
+									</div>
+									<div class="carousel-item">
+										<img src="character/chin.png" class="d-block w-100 img-fluid" alt="Chin" />
+									</div>
+									<div class="carousel-item">
+										<img src="character/troy.png" class="d-block w-100 img-fluid" alt="Troy" />
+									</div>
+								</div>
+								<button class="carousel-control-prev" type="button"
+									data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Previous</span>
+								</button>
+								<button class="carousel-control-next" type="button"
+									data-bs-target="#carouselExampleFade" data-bs-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Next</span>
+								</button>
+							</div>
+						</div>
+
+						<div class="col-12 col-md-6 mt-3 mt-md-0 py-5">
+							<h1 class="text-center">Main Characters</h1>
+							<p class="py-5">
+								<strong>Elora Chin Valencia</strong> grew up in a toxic Christian family where she was
+								viewed as the black sheep. Araw-araw ay ipinaparamdam sa kanya ng mundo na wala siyang
+								lugar sa sarili niyang tahanan. She was a consistent dean's lister and an obedient
+								daughter, which left her wondering what she had done so wrong to be disregarded as a
+								speck of dust in the wind. They made her feel like she was just dirt, filling up the
+								empty space. The one who would never have her own safe place.
+							</p>
+
+							<p>
+								Feeling all of this contributed to her endless suicidal ideations.
+
+								Baka nga tama sila. Baka nga wala siyang halaga at kailanman ay hindi na sasaya.
+
+								She almost believed that. She almost held onto that notion.
+							</p>
+
+							<p>
+								Not until she met the man in his BS Civil Engineering uniform and gorgeous grin,
+								<strong>Troy Jefferson Dela Paz</strong>. He kissed her forehead, and her loud thoughts
+								were silenced. Her demons calmed down. Her foes were defeated.
+
+								For the first time in her life, she had proven her family wrong—a happy Elora Chin was
+								possible. She was loved and well-taken care of. Troy embraced her sharp parts, not
+								minding the wounds he might get.
+
+								But fate had a lot of cruel things in store for her.
+
+								Because when she thought she had reached the peak of happiness, she found herself
+								drowning alone in the ocean she now called home, alone in her shame, alone with the
+								waves she couldn't tame.
+							</p>
+						</div>
+					</div>
+					<div class="row text-center">
+						<div class="col-12">
+							<strong>
+								<p>"When I thought I had reached the peak of happiness, I found myself drowning
+									alone in the ocean I now called home..." - Elora Chin Valencia</p>
+							</strong>
+						</div>
+
+						<div class="col-12">
+							<strong>
+								<p>Your walls are too high! I regret climbing it! You’re not even worth it! - Troy
+									Jefferson Dela Paz</p>
+							</strong>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- College Series section -->
+			<div class="container-fluid episode" id="college-series">
+				<div class="container">
+					<div class="row">
+						<div class="col pt-5 mt-5">
+							<h1>Inksteady: College Series</h1>
+							<p class="lead">A heartfelt series about college dreams, deadlines, and the stories that
+								shape us.</p>
+						</div>
+						<hr />
+					</div>
+					<div class="container text-center">
+						<div class="row">
+							<!-- College Series 1 -->
+							<div class="col-12 col-sm-6 col-md-4 py-5">
+								<h5>Bk 1 - Chasing the Sun</h5>
+								<img src="character/cts.jpg" alt="Chasing the Sun" class="img-fluid mt-2"
+									title="Book 1 - Chasing the Sun" />
+								<p class="mt-2">Solene Clemente, a struggling engineering student, found strength in her
+									mother
+									and best friend Duke—her secret love. Despite life’s hardships, their love kept her
+									going.
+									But like the sun she admired, she was meant to shine alone.</p>
+							</div>
+
+							<!-- College Series 2 -->
+							<div class="col-12 col-sm-6 col-md-4 py-5">
+								<h5>Bk 2 - Taming the Waves</h5>
+								<img src="character/ttw.jpg" alt="Taming the Waves" class="img-fluid mt-2"
+									title="Book 2 - Taming the Waves" allowfullscreen> />
+								<p class="mt-2">Elora grew up unloved and broken. Troy made her feel whole—until fate
+									left her
+									drowning in the very love that once saved her.</p>
+							</div>
+
+							<!-- College Series 3 -->
+							<div class="col-12 col-sm-6 col-md-4 py-5">
+								<h5>Bk 3 - Loving the Sky</h5>
+								<img src="character/lts.jpg" alt="Loving the Sky" class="img-fluid mt-2"
+									title="Book 3 - Loving the Sky" allowfullscreen> />
+								<p class="mt-2">Reese would endure anything to win back Harvin. She waited, suffered,
+									and
+									hoped—only to realize some loves, like the sky, are meant to be admired from afar.
+								</p>
+							</div>
+						</div>
+					</div>
+					<hr />
+				</div>
+			</div>
+
+			<!-- The Losers' Club Series -->
+			<div class="container-fluid episode" id="Loser's Club-series">
+				<div class="container">
+					<div class="row">
+						<div class="col pt-5 mt-5">
+							<h1>Inksteady: The Losers' Club Series</h1>
+							<p class="lead"> explores growth, healing, and the struggles of young love.</p>
+						</div>
+						<hr />
+					</div>
+					<div class="container text-center">
+						<div class="row">
+							<!-- Loser Club Series 1 -->
+							<div class="col-12 col-sm-6 col-md-4 py-5">
+								<h5>Bk 1 - In the Midst of the Crowd</h5>
+								<img src="character/imoc.jpg" alt="Chasing the Sun" class="img-fluid mt-2"
+									title="Book 1 - In the Midst of the Crowd" />
+								<p class="mt-2">Dawn Karsen Navarro adored singer Dior Kobe Gallardo, happy just hearing
+									his voice from the farthest seat.
+
+									One lucky day, she met him backstage and learned his story.
+
+									But why did she return to the back row and become just a fan again after all they
+									promised?</p>
+							</div>
+
+							<!-- Loser Club Series 2 -->
+							<div class="col-12 col-sm-6 col-md-4 py-5">
+								<h5>Bk 2 - Mistakes We Can't Laugh About</h5>
+								<img src="character/mwcl.jpg" alt="Taming the Waves" class="img-fluid mt-2"
+									title="Book 2 - Mistakes We Can't Laugh About" allowfullscreen> />
+								<p class="mt-2">You’ll laugh at past mistakes—awkward kisses, failed recitals, bad
+									outfits.
+
+									But some things stay painful.
+
+									For Amari Sloane Mendoza, loving Leon Ysmael Zamora is one she can’t laugh at..</p>
+							</div>
+
+							<!-- Loser Club Series 3 -->
+							<div class="col-12 col-sm-6 col-md-4 py-5">
+								<h5>Bk 3 - Words Written in Water</h5>
+								<img src="character/wwiw.jpg" alt="Loving the Sky" class="img-fluid mt-2"
+									title="Book 3 - Words Written in Water" allowfullscreen> />
+								<p class="mt-2">Millicent Rae Velasco needed to write about Juancho Montero to
+									graduate—but he rejected her.
+
+									Desperate, she followed him, hoping only to finish her article.
+
+									But in chasing his story, she unknowingly fell for him.
+								</p>
+							</div>
+						</div>
+					</div>
+					<hr />
+				</div>
+			</div>
+		
+
+			<div class="class">
+    <h2 style="my-5; margin-left: 50px;"></h2>
+  </div>
+  <a href="../index.html">&lt; Back</a>
+
+		<!-- Footer Section -->
+<footer class="container-fluid bg-dark text-white py-3">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 text-center">
+				<p class="mb-0">&copy; 2025 Marga Works. All rights 
+
+		</div>
+	</section>
+
+	<div class="class">
+    <h2 style="my-5; margin-left: 50px;"></h2>
+  </div>
+  <a href="../index.html">&lt; Back</a>
+
+	<!-- Optional Button for your state toggle function -->
+	<div class="text-center my-3">
+		<button id="btn" class="btn btn-outline-primary" onclick="changeState()">Toggle State</button>
+	</div>
+
+	<!-- Bootstrap JS and dependencies -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type="text/javascript" src="js/parallax.js"></script>
+</body>
+
+</html>
