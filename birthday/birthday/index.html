@@ -65,60 +65,73 @@
     </div>
 
     <div id="unlocked" style="display:none;">
-    <!-- 🎶 Audio -->
-    <audio id="birthdayMusic" loop>
-        <source src="birthday.mp3" type="audio/mpeg">
-    </audio>
+        <audio id="birthdayMusic" autoplay loop>
+            <source src="birthday_song.mp3" type="audio/mpeg">
+        </audio>
 
-    <div class="content">
-        <h1>🎉 Happy Birthday, Sir CJ! 🎂</h1>
 
-        <div class="photo">
-            <img src="birthday_photo.jpg" alt="Birthday Photo">
-            <p>Wishing you a day full of joy and love! 🎈</p>
-        </div>
+        <div class="content">
+            <h1>🎉 Happy Birthday, Sir CJ! 🎂</h1>
 
-        <button onclick="showMessage()">Click for Your Birthday Message 💌</button>
+            <div class="photo">
+                <img src="Sir CJ.jpg" alt="Birthday Photo">
+                <p>Wishing you a day full of joy and love! 🎈</p>
+            </div>
 
-        <div id="message" class="message" style="display:none;">
-            💖 <strong>Dear Sir CJ,</strong><br><br>
-            Happy Birthday po, Sir!<br>
-            I know that we’re not really that close, but I still want to greet you.<br>
-            I truly admire how professional you are.<br>
-            Thank you for the knowledge you’ve shared — not just the lessons inside the classroom, but also the wisdom
-            about life beyond school.<br>
-            Someday, I hope to be like you.<br><br>
-            <strong>Enjoy this special and unique day of yours.  
-            Happy Birthday again, Sir! 🎉🎂🎁</strong>
+            <button onclick="showMessage()">Click for Your Birthday Message 💌</button>
+
+            <div id="message" class="message" style="display:none;">
+                💖 <strong>Dear Sir CJ,</strong><br><br>
+                Happy Birthday po, Sir!
+               <p>I know that we’re not really that close, but I still want to greet you.</p>
+               <p>I truly admire how professional you are.</p>
+               <p>Thank you for the knowledge you’ve shared — not just the lessons inside the classroom, but also the
+                wisdom about life beyond school.</p>
+                <p>Someday, I hope to be like you.</p>
+                <p><strong>Enjoy this special and unique day of yours.
+                    Happy Birthday again, Sir! 🎉🎂🎁</strong>
+            </div>
         </div>
     </div>
-</div>
 
 
-        <script>
-            function checkPassword() {
-                const input = document.getElementById('password').value;
-                const error = document.getElementById('error');
-                if (input === 'june162025') {
-                    document.getElementById('locked').style.display = 'none';
-                    document.getElementById('unlocked').style.display = 'block';
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password').value;
+            const error = document.getElementById('error');
+            if (input === 'june162025') {
+                document.getElementById('locked').style.display = 'none';
+                document.getElementById('unlocked').style.display = 'block';
 
-                    const ytMusic = document.getElementById('ytMusic');
-                    ytMusic.src = "https://www.youtube.com/embed/n3qw7lZzbkM?autoplay=1";
-                } else {
-                    error.textContent = "Incorrect password. Try again!";
-                }
+                const ytMusic = document.getElementById('ytMusic');
+                ytMusic.src = "https://www.youtube.com/embed/n3qw7lZzbkM?autoplay=1";
+            } else {
+                error.textContent = "Incorrect password. Try again!";
             }
+        }
 
-            function showMessage() {
-                document.getElementById('message').style.display = 'block';
+        function showMessage() {
+            document.getElementById('message').style.display = 'block';
+        } function checkPassword() {
+            const input = document.getElementById('password').value;
+            const error = document.getElementById('error');
+            if (input === 'june162025') {
+                document.getElementById('locked').style.display = 'none';
+                document.getElementById('unlocked').style.display = 'block';
+
+                const music = document.getElementById('birthdayMusic');
+                music.play(); 
+            } else {
+                error.textContent = "Incorrect password. Try again!";
             }
-        </script>
+        }
 
-        <div class="class">
-				<h2 style="my-5; margin-left: 50px;"></h2>
-			</div>
-			<a href="../../index.html" class="btn custom-btn">&larr; Back</a>
+    </script>
+
+    <div class="class">
+        <h2 style="my-5; margin-left: 50px;"></h2>
+    </div>
+    <a href="../../index.html" class="btn custom-btn">&larr; Back</a>
 
 </body>
 
