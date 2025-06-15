@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>🎁 Birthday Surprise</title>
+    <style>
+        body {
+            background-color: #1b1f3b;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            color: #ffffff;
+        }
+
+        input[type="password"],
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+
+        button {
+            background-color: #4682B4;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .photo img {
+            max-width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        .message {
+            margin-top: 30px;
+            font-size: 22px;
+            color: #fdf2f0;
+        }
+
+        iframe {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="locked">
+        <h1></h1>
+        <p>🔐 Hint: date today → <code>monthddyyyy</code><br>
+            All lowercase, no spaces. Example: <i>march092024</i></p>
+        <input type="password" id="password" placeholder="Enter birthday password">
+        <br>
+        <button onclick="checkPassword()">Unlock</button>
+        <p id="error" class="error"></p>
+    </div>
+
+    <div id="unlocked" style="display:none;">
+        <!-- 🎶 YouTube Music Embed (Hidden) -->
+        <iframe id="ytMusic" width="0" height="0" src="" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+
+        <h1>🎉 Happy Birthday, Sir CJ! 🎂</h1>
+
+        <!-- 📸 Photo -->
+        <div class="photo">
+            <img src="Sir CJ.jpg" alt="Birthday Photo">
+            <p>Wishing you a day full of joy and love! 🎈</p>
+        </div>
+
+        <!-- 💌 Message Button -->
+        <button onclick="showMessage()">Click for Your Birthday Message 💌</button>
+        <div id="message" class="message"
+            style="display:none; line-height: 1.6; max-width: 600px; margin: 20px auto; text-align: left;">
+            <p>Happy Birthday po, Sir!</p>
+            <p>I know that we’re not really that close, but I still want to greet you.</p>
+            <p>I truly admire how professional you are.</p>
+            <p>Thank you for the knowledge you’ve shared — not just the lessons inside the classroom, but also the
+                wisdom about life beyond school.</p>
+            <p>Someday, I hope to be like you.</p>
+            <p style="margin-top: 10px;"><strong>Enjoy this special and unique day of yours.<br>
+                    Happy Birthday again, Sir! 🎉🎂🎁</strong></p>
+        </div>
+
+        <script>
+            function checkPassword() {
+                const input = document.getElementById('password').value;
+                const error = document.getElementById('error');
+                if (input === 'june162025') {
+                    document.getElementById('locked').style.display = 'none';
+                    document.getElementById('unlocked').style.display = 'block';
+
+                    const ytMusic = document.getElementById('ytMusic');
+                    ytMusic.src = "https://www.youtube.com/embed/n3qw7lZzbkM?autoplay=1";
+                } else {
+                    error.textContent = "Incorrect password. Try again!";
+                }
+            }
+
+            function showMessage() {
+                document.getElementById('message').style.display = 'block';
+            }
+        </script>
+
+</body>
+
+</html>
