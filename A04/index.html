@@ -3,92 +3,288 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Redmi 14C - Smart. Fast. Affordable.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redmi 14C </title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
   <style>
+    :root {
+      --screen-bg: #ebecf0;
+      --primary-text: #5a6782;
+      --secondary-text: #8e9aae;
+      --shadow-dark: #c8c9ce;
+      --shadow-light: #ffffff;
+      --main-radius: 30px;
+      --element-radius: 12px;
+      --shadow-outset: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
+      --shadow-inset: inset 6px 6px 12px var(--shadow-dark), inset -6px -6px 12px var(--shadow-light);
+    }
+
     body {
       background: linear-gradient(to right, #ffb6c1, #e0bbf7, #a1c4fd);
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
       margin: 0;
-      color: #333;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
 
-    header {
-      background: rgba(204, 204, 255, 0.7);
-      padding: 30px;
-      text-align: center;
+    .main-container {
+      width: 100%;
+      max-width: 1200px;
+      background: var(--screen-bg);
+      border-radius: var(--main-radius);
+      box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.2), -20px -20px 40px rgba(255, 255, 255, 0.4);
+      padding: 40px;
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--primary-text);
+      margin-bottom: 5px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: var(--secondary-text);
+      margin-bottom: 25px;
+    }
+
+    .carousel-container {
+      border-radius: var(--element-radius);
+      box-shadow: var(--shadow-inset);
       padding: 20px;
     }
 
-    img {
-      max-width: 100%;
-      border-radius: 10px;
-      display: block;
-      margin: 20px auto;
+    .carousel-item img {
+      border-radius: calc(var(--element-radius) - 5px);
     }
 
     h2 {
+      color: var(--primary-text);
+      margin-top: 25px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .features-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .feature-chip {
+      background: var(--screen-bg);
+      padding: 12px 18px;
+      border-radius: var(--element-radius);
+      box-shadow: var(--shadow-outset);
+      color: var(--primary-text);
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .feature-chip:hover {
+      transform: translateY(-2px);
+      color: var(--primary-text);
+    }
+
+    .feature-chip:active {
+      box-shadow: var(--shadow-inset);
+      transform: translateY(0);
+    }
+
+    .feature-chip .fas {
+      color: #7b8fbd;
+    }
+
+    .actions-footer-container {
+      margin-top: 40px;
+      padding-top: 25px;
+      border-top: 2px solid var(--shadow-dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .btn-neumorphic {
+      display: inline-block;
+      padding: 15px 30px;
+      border-radius: 50px;
+      box-shadow: var(--shadow-outset);
+      text-decoration: none;
+      color: var(--primary-text);
+      font-weight: 600;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .btn-neumorphic:hover {
       color: #3a6ea5;
+      transform: translateY(-2px);
     }
 
-    ul {
-      list-style-type: disc;
-      padding-left: 20px;
+    .btn-neumorphic:active {
+      box-shadow: var(--shadow-inset);
+      transform: translateY(0);
     }
 
-    footer {
-      background: rgba(204, 204, 255, 0.7);
-      color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 30px;
+    footer p {
+      margin: 0;
+      color: var(--secondary-text);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .modal-content.modal-neumorphic {
+      background: var(--screen-bg);
+      border-radius: var(--element-radius);
+      box-shadow: var(--shadow-outset);
+      border: none;
+    }
+
+    .modal-neumorphic .modal-header {
+      border-bottom: none;
+      color: var(--primary-text);
+      padding: 1.5rem 1.5rem 0.5rem;
+    }
+
+    .modal-neumorphic .modal-title {
+      font-weight: 600;
+    }
+
+    .modal-neumorphic .modal-body {
+      color: var(--secondary-text);
+      padding: 0.5rem 1.5rem 1.5rem;
+      line-height: 1.6;
+    }
+
+    .modal-neumorphic .btn-close {
+      filter: invert(40%) sepia(10%) saturate(1000%) hue-rotate(180deg);
+    }
+
+    @media (max-width: 992px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .main-container {
+        padding: 30px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>Redmi 14C</h1>
-    <p>Reliable Performance. Stunning Display. Budget-Friendly.</p>
-  </header>
+  <main class="main-container">
+    <div class="content-grid">
+      <div class="carousel-column">
+        <div class="carousel-container">
+          <div id="phoneCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="img/14cc.jfif" class="d-block w-100" alt="Front View">
+              </div>
+              <div class="carousel-item">
+                <img src="img/14c.jfif" class="d-block w-100" alt="Back View">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-column">
+        <header>
+          <h1>Redmi 14C</h1>
+          <p>Reliable Performance. Stunning Display.</p>
+        </header>
 
-  <div class="container">
-    <img src="redmi14C.png" alt="Redmi 14C" />
+        <section>
+          <h2>Key Features</h2>
+          <div class="features-container">
+            <a href="#" class="feature-chip" data-bs-toggle="modal" data-bs-target="#featureModal"
+              data-title="RAM & Storage"
+              data-description="<p>Enjoy seamless multitasking with 6GB of physical RAM, boosted by an additional 6GB of virtual RAM. Store all your apps and files on the 128GB internal storage, expandable up to 1TB with a microSD card.</p>">
+              <i class="fas fa-memory"></i>12GB Total RAM
+            </a>
+            <a href="#" class="feature-chip" data-bs-toggle="modal" data-bs-target="#featureModal"
+              data-title="Processor"
+              data-description="<p>The MediaTek Helio G85 octa-core processor ensures smooth gaming, fast app loading, and efficient power consumption, making your day-to-day experience a breeze.</p>">
+              <i class="fas fa-microchip"></i>Helio G85
+            </a>
+            <a href="#" class="feature-chip" data-bs-toggle="modal" data-bs-target="#featureModal"
+              data-title="AI Camera System"
+              data-description="<p>The 50MP main sensor captures stunningly detailed photos. The AI-powered dual camera enhances your shots with intelligent scene recognition, portrait modes, and night-time clarity.</p>">
+              <i class="fas fa-camera-retro"></i>50MP AI Camera
+            </a>
+            <a href="#" class="feature-chip" data-bs-toggle="modal" data-bs-target="#featureModal"
+              data-title="Battery & Charging"
+              data-description="<p>The massive 5000mAh battery provides more than a day of heavy use. When you need to power up, the 18W fast charging gets you back in action quickly.</p>">
+              <i class="fas fa-battery-full"></i>5000mAh Battery
+            </a>
+          </div>
+        </section>
 
-    <h2>Overview</h2>
-    <p>The Redmi 14C offers outstanding features at an incredible price. Whether you're a student, a professional, or a
-      casual user, this phone delivers the performance and battery life you need for everyday tasks.</p>
+        <div class="actions-footer-container">
+          <a href="../index.html" class="btn-neumorphic">
+            < Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </main>
 
-    <h2>Key Features</h2>
-    <ul>
-      <li>6GB RAM + 6GB Virtual RAM with up to 128GB storage plus up to 1TB expandable storage</li>
-      <li>MediaTek Helio G85 Octa-Core Processor</li>
-      <li>50MP AI Dual Camera System</li>
-      <li>5000mAh Battery with 18W Fast Charging</li>
-      <li>MIUI 14 based on Android 13</li>
-    </ul>
-
-    <h2>Why Choose Redmi 14C?</h2>
-    <p>The Redmi 14C is built to handle your daily mobile needs—smooth multitasking, great camera capabilities, and
-      long-lasting battery—all wrapped in a sleek, modern design. It’s perfect for those who want value and performance.
-    </p>
-
-    <a href="../index.html">&lt; Back</a>
+  <div class="modal fade" id="featureModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-neumorphic">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">Feature Title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalBody">
+          Feature description will be loaded here.
+        </div>
+      </div>
+    </div>
   </div>
 
-  <footer>
-    <p>&copy; 2025 Xiaomi / Redmi. All rights reserved.</p>
-  </footer>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const featureModal = document.getElementById('featureModal');
+    featureModal.addEventListener('show.bs.modal', function (event) {
+      const button = event.relatedTarget;
+      const title = button.getAttribute('data-title');
+      const description = button.getAttribute('data-description');
+      featureModal.querySelector('.modal-title').textContent = title;
+      featureModal.querySelector('.modal-body').innerHTML = description;
+    });
+  </script>
 </body>
 
 </html>
