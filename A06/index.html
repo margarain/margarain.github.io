@@ -50,6 +50,11 @@
       object-fit: cover;
     }
 
+    /* --- NEW CSS RULE TO FIX THE VIDEO --- */
+    .ratio video {
+      object-fit: cover;
+    }
+
     .card.fade-in {
       opacity: 0;
       transform: translateY(20px);
@@ -171,19 +176,27 @@
     document.addEventListener('DOMContentLoaded', () => {
 
       const friendsData = [
-        { title: "Margarette", picture: "rette.jpg" },
-        { title: "G12 Friends", picture: "G12.jpg" },
-        { title: "Highschool Trio", picture: "g12-trio.jpg" },
-        { title: "My Trio", picture: "my-trio.jpg" },
-        { title: "College Trio", picture: "col-trio.jpg" },
-        { title: "Totiemarie", picture: "totiemarie.jpg" },
-        { title: "Totiemarie & Friends", picture: "saya yarn.jpg" },
-        { title: "Totiemarie & Friends", picture: "complete.jpg" },
-        { title: "Totiemarie & Friends", picture: "smile.jpg" },
-        { title: "Totiemarie & Friends", picture: "taray pa din.jpg" },
-        { title: "Totiemarie & Friends", picture: "taray.jpg" },
-        { title: "Totiemarie & Friends", picture: "yieee.jpg" }
-
+        { title: "Margarette", picture: "me.jfif", type: "image" },
+        { title: "G12 Friends", picture: "G12.jpg", type: "image" },
+        { title: "SHS Trio", picture: "g12-trio.jpg", type: "image" },
+        { title: "My Trio", picture: "my-trio.jpg", type: "image" },
+        { title: "College Trio", picture: "col-trio.jpg", type: "image" },
+        { title: "Totiemarie", picture: "totiemarie.jpg", type: "image" },
+        { title: "Totiemarie & Friends", picture: "saya yarn.jpg", type: "image" },
+        { title: "Totiemarie & Friends", picture: "complete.jpg", type: "image" },
+        { title: "Totiemarie & Friends", picture: "smile.jpg", type: "image" },
+        { title: "Totiemarie & Friends", picture: "taray pa din.jpg", type: "image" },
+        { title: "Totiemarie & Friends", picture: "taray.jpg", type: "image" },
+        { title: "Totiemarie & Friends", picture: "yieee.jpg", type: "image" },
+         { title: "Marga", picture: "ewan.jfif", type: "image" },
+         { title: "Marga", picture: "bored.jfif", type: "image" },
+         { title: "Marga", picture: "luhh.jfif", type: "image" },
+         { title: "with crush", picture: "crushiee.jfif", type: "image" },
+         { title: "Totiemarie & Friends", picture: "team-walter.jfif", type: "image" },
+         { title: "UNO", picture: "Unogang.jfif", type: "image" },
+         { title: "Fun Moments", video: "byahe.mp4", type: "video" },
+         { title: "Fun Moments", video: "what.mp4", type: "video" },
+         { title: "Fun Moments", video: "masaya sila.mp4", type: "video" }
       ];
 
       const elements = {
@@ -196,17 +209,37 @@
       };
 
       function renderCards() {
-        const cardHTML = friendsData.map(friend => `
-          <div class="col-lg-4 col-md-6 col-12">
-            <div class="card my-3 shadow-sm rounded-4 overflow-hidden fade-in">
-              <img src="img/${friend.picture}" class="card-img-top" alt="${friend.title}">
-              <div class="card-body">
-                <h5 class="card-title text-center">${friend.title}</h5>
+        const cardHTML = friendsData.map(item => {
+          if (item.type === 'video') {
+            return `
+              <div class="col-lg-4 col-md-6 col-12">
+                <div class="card my-3 shadow-sm rounded-4 overflow-hidden fade-in">
+                  <div class="card-body">
+                    <h5 class="card-title text-center mb-3">${item.title}</h5>
+                    <div class="ratio ratio-16x9">
+                      <video class="rounded" loop muted playsinline>
+                        <source src="video/${item.video}" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        `).join('');
-
+            `;
+          }
+          else {
+            return `
+              <div class="col-lg-4 col-md-6 col-12">
+                <div class="card my-3 shadow-sm rounded-4 overflow-hidden fade-in">
+                  <img src="img/${item.picture}" class="card-img-top" alt="${item.title}">
+                  <div class="card-body">
+                    <h5 class="card-title text-center">${item.title}</h5>
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+        }).join('');
         elements.grid.innerHTML = cardHTML;
       }
 
@@ -215,7 +248,6 @@
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
         document.body.setAttribute('data-bs-theme', newTheme);
         elements.themeToggler.textContent = newTheme === 'light' ? 'Dark Mode' : 'Light Mode';
-
         elements.themeToggler.classList.toggle('btn-outline-primary');
         elements.themeToggler.classList.toggle('btn-outline-light');
       }
@@ -237,14 +269,25 @@
       renderCards();
 
       const cards = document.querySelectorAll('.card.fade-in');
+      
       const cardObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !entry.target.classList.contains('visible')) {
             entry.target.classList.add('visible');
-            cardObserver.unobserve(entry.target);
+          }
+          
+          const video = entry.target.querySelector('video');
+          if (video) {
+            if (entry.isIntersecting) {
+              video.play();
+            } else {
+              video.pause();
+            }
           }
         });
-      }, { threshold: 0.1 });
+      }, { 
+        threshold: 0.5 
+      });
 
       cards.forEach(card => cardObserver.observe(card));
 

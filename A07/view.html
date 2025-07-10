@@ -1,131 +1,140 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>View Dog Breed</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: linear-gradient(to right, #ffb6c1, #e0bbf7, #a1c4fd);
-    }
-
-    .picture-container {
-      width: 100%;
-      height: 100%;
-      max-width: 250px;
-      max-height: 250px;
-      background-color: lightgrey;
-      border-radius: 100px;
-      margin-bottom: 20px;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .picture-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 100px;
-    }
-
-    .card {
-      text-align: center;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dog Breed Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: linear-gradient(to right, #ffb6c1, #c2e9fb); min-height: 100vh; }
+        .breed-image { width: 100%; height: 250px; object-fit: cover; border-radius: 10px; }
+        .breed-title { text-transform: capitalize; font-weight: 300; letter-spacing: 1px; }
+        .info-card { background-color: rgba(255, 255, 255, 0.8); backdrop-filter: blur(5px); }
+        .info-card .list-group-item { background-color: transparent; border-color: rgba(0,0,0,0.08); }
+        .info-card .list-group-item strong { color: #333; }
+    </style>
 </head>
-
 <body>
-  <div class="container-fluid py-3" style="background-color: rgb(246, 132, 132);">
-    <div class="container">
-      <div class="row">
-        <div class="col text-center">
-          <div class="h3 text-white">View Dog Breed</div>
+
+<div class="container my-5">
+    
+    <div id="loading-state" class="text-center">
+        <h1 id="breed-title" class="mb-4 breed-title">Loading Breed...</h1>
+        <div class="spinner-border text-dark" role="status">
+            <span class="visually-hidden">Loading...</span>
         </div>
-      </div>
     </div>
-  </div>
 
-  <div class="container mt-3">
-    <div class="row justify-content-center" id="container"></div>
-  </div>
-
-  <script>
-    const getDogBreedImage = async () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const breedName = urlParams.get('breed');
-
-      if (!breedName) {
-        alert('No breed specified');
-        return;
-      }
-
-      try {
-        const response = await fetch(`https://dog.ceo/api/breed/${breedName}/images/random`);
-        const dogData = await response.json();
-
-        if (dogData.status !== 'success') {
-          throw new Error('Breed not found');
-        }
-
-        const imageUrl = dogData.message;
-        const breed = breedName.charAt(0).toUpperCase() + breedName.slice(1);
-
-        const breedDescriptions = {
-  labrador: "Labradors are friendly, intelligent, and outgoing dogs. They are great family pets and love to swim and fetch.",
-  beagle: "Beagles are curious, merry, and friendly dogs with excellent tracking instincts. They are great with children and other pets.",
-  pug: "Pugs are charming, mischievous, and loving companions. They enjoy affection and are great lap dogs.",
-  husky: "Huskies are energetic, free-spirited dogs with a strong pack mentality. They are known for their striking blue eyes and thick coats.",
-  german: "German Shepherds are courageous, confident, and smart. They are often used in police and military roles for their loyalty and strength.",
-  golden: "Golden Retrievers are kind, trustworthy, and eager-to-please family dogs. They are also excellent guide dogs and therapy animals.",
-  chihuahua: "Chihuahuas are tiny dogs with huge personalities. They are alert, lively, and loyal to their owners.",
-  bulldog: "Bulldogs are calm, courageous, and friendly. They are known for their loose skin, distinctive pushed-in nose, and affectionate nature.",
-  dalmatian: "Dalmatians are active, energetic, and playful dogs. They're known for their unique spotted coats and history as firehouse mascots.",
-  shih: "Shih Tzus are affectionate, outgoing, and gentle lap dogs. They were bred to be royal companions in ancient China.",
-  poodle: "Poodles are intelligent, active, and elegant dogs. They come in standard, miniature, and toy sizes and are excellent at obedience.",
-  rottweiler: "Rottweilers are confident, fearless, and loyal dogs. They are protective of their families and make excellent guard dogs.",
-  boxer: "Boxers are bright, fun-loving, and energetic dogs. They are very loyal and form strong bonds with their families.",
-  dachshund: "Dachshunds are clever, brave, and a little stubborn. Their unique long bodies and short legs make them great burrowers.",
-  pomeranian: "Pomeranians are lively, extroverted, and very smart. They're fluffy, tiny, and have a bold personality."
-};
-
-const description = breedDescriptions[breedName] || "This is a beautiful dog breed known for its unique traits.";
-
-
-        const mainContainer = document.getElementById('container');
-        mainContainer.innerHTML = `
-          <div class="col-12 text-center">
-            <div class="card text-center p-5 rounded-5 shadow mx-auto">
-              <div class="picture-container mx-auto">
-                <img src="${imageUrl}" id="img">
-              </div>
-              <div class="mt-5 h5" id="name">${breed}</div>
-              <p class="mt-3">${description}</p>
+    <div id="content-area" class="row g-4 d-none">
+        <div class="col-lg-8">
+            <h2 class="h4 mb-3">Image Gallery</h2>
+            <div class="row g-3" id="image-gallery"></div>
+        </div>
+        <div class="col-lg-4">
+            <h2 class="h4 mb-3">Breed Information</h2>
+            <div class="card p-3 info-card shadow-sm">
+                <ul class="list-group list-group-flush" id="breed-info-list"></ul>
             </div>
-          </div>`;
-      } catch (error) {
-        alert('Error: ' + error.message);
-      }
+        </div>
+    </div>
+
+    <div id="error-message" class="alert alert-danger mt-4 d-none"></div>
+    
+    <div class="text-center">
+      <a href="index.html" class="btn btn-outline-dark mt-5">< Back to Full Gallery</a>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const apiKey = 'YdFwBH95TdmqugO34yZZSQ==0vAdGEoIdNXJh6pL';
+
+    const breedTitle = document.getElementById('breed-title');
+    const imageGallery = document.getElementById('image-gallery');
+    const breedInfoList = document.getElementById('breed-info-list');
+    const loadingState = document.getElementById('loading-state');
+    const contentArea = document.getElementById('content-area');
+    const errorMessage = document.getElementById('error-message');
+
+    if (apiKey === 'YOUR_API_NINJAS_KEY_HERE') {
+        alert('Please open view.html and add your API-Ninjas key!');
+        return;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const breedFromUrl = urlParams.get('breed');
+
+    const showError = (message) => {
+        loadingState.style.display = 'none';
+        errorMessage.textContent = message;
+        errorMessage.classList.remove('d-none');
     };
 
-    console.log
-    getDogBreedImage();
-  </script>
+    if (!breedFromUrl) {
+        showError('No breed specified. Please go back to the gallery and select a dog.');
+        return;
+    }
+    
+    const displayBreedName = breedFromUrl.replace(/\//g, ' ');
+    breedTitle.textContent = displayBreedName;
 
-<div class="class">
-  <h2 style="my-5; margin-left: 50px;"></h2>
-</div>
-<a href="../A07/index.html">&lt; Back</a>
+    const fetchBreedDetails = async () => {
+        try {
+            const searchQuery = breedFromUrl.split('/').pop();
 
+            const dataPromise = fetch(`https://api.api-ninjas.com/v1/dogs?name=${searchQuery}`, {
+                headers: { 'X-Api-Key': apiKey }
+            });
+            const imagesPromise = fetch(`https://dog.ceo/api/breed/${breedFromUrl}/images/random/8`);
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+            const [dataResponse, imagesResponse] = await Promise.all([dataPromise, imagesPromise]);
+
+            if (!dataResponse.ok || !imagesResponse.ok) {
+                throw new Error('Failed to fetch data from one or more APIs.');
+            }
+
+            const dogDataArray = await dataResponse.json();
+            const imagesData = await imagesResponse.json();
+
+            if (dogDataArray.length === 0) {
+                throw new Error(`No detailed data found for "${displayBreedName}". The API may not recognize this specific breed.`);
+            }
+
+            const dogData = dogDataArray[0];
+
+            const lifeExpectancy = `${dogData.min_life_expectancy} - ${dogData.max_life_expectancy} years`;
+
+            breedInfoList.innerHTML = `
+                <li class="list-group-item"><strong>Name:</strong> ${dogData.name || 'Not available'}</li>
+                <li class="list-group-item"><strong>Temperament:</strong> ${dogData.temperament || 'Not available'}</li>
+                <li class="list-group-item"><strong>Origin:</strong> ${dogData.origin || 'Not available'}</li>
+                <li class="list-group-item"><strong>Life Expectancy:</strong> ${lifeExpectancy}</li>
+                <li class="list-group-item"><strong>Good with Children:</strong> ${"⭐".repeat(dogData.good_with_children || 0)}</li>
+                <li class="list-group-item"><strong>Energy Level:</strong> ${"⚡".repeat(dogData.energy || 0)}</li>
+                <li class="list-group-item"><strong>Shedding:</strong> ${"💧".repeat(dogData.shedding || 0)}</li>
+                <li class="list-group-item"><strong>Grooming Needs:</strong> ${"✂️".repeat(dogData.grooming || 0)}</li>
+            `;
+
+            if (imagesData.status === 'success') {
+                imageGallery.innerHTML = '';
+                imagesData.message.forEach(imageUrl => {
+                    const col = `<div class="col-6 col-md-4"><img src="${imageUrl}" class="img-fluid breed-image shadow-sm" alt="${displayBreedName}"></div>`;
+                    imageGallery.innerHTML += col;
+                });
+            }
+
+            loadingState.style.display = 'none';
+            contentArea.classList.remove('d-none');
+
+        } catch (error) {
+            console.error('Error fetching breed details:', error);
+            showError(error.message);
+        }
+    };
+
+    fetchBreedDetails();
+});
+</script>
+
 </body>
 </html>
