@@ -1,299 +1,984 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Marga w/Friends - Advanced</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mrgrttdlrs </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #000000;
+            --text-color: #f5f5f5;
+            --secondary-text: #a8a8a8;
+            --btn-bg: #363636;
+            --btn-hover: #262626;
+            --border-color: #262626;
+            --highlight-bg: #121212;
+            --modal-bg: #262626;
+            --footer-bg: #000000;
+            --list-hover: #363636;
+            --link-blue: #0095f6;
+        }
 
-  <style>
-    :root {
-      --bg-color: #f8f9fa;
-      --text-color: #212529;
-      --card-bg: #ffffff;
-      --inquire-bg: #f4f4f9;
-      --inquire-hover-bg: #ff9aa2;
-      --inquire-hover-text: #ffffff;
-      --accent-color: #ff9aa2;
-    }
+        [data-theme="light"] {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --secondary-text: #737373;
+            --btn-bg: #efefef;
+            --btn-hover: #dbdbdb;
+            --border-color: #dbdbdb;
+            --highlight-bg: #fafafa;
+            --modal-bg: #ffffff;
+            --footer-bg: #fafafa;
+            --list-hover: #f0f0f0;
+            --link-blue: #0095f6;
+        }
 
-    [data-bs-theme="dark"] {
-      --bg-color: #212529;
-      --text-color: #f8f9fa;
-      --card-bg: #343a40;
-      --inquire-bg: #495057;
-      --inquire-hover-bg: #ff9aa2;
-      --inquire-hover-text: #ffffff;
-    }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-    body {
-      min-height: 100vh;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
+        /* Navbar */
+        .navbar {
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 20px;
+            background-color: var(--bg-color);
+            transition: background-color 0.3s;
+        }
+        .brand-text {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
 
-    .card,
-    #inquireButton {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+        /* Profile Header */
+        .profile-header {
+            max-width: 935px;
+            margin: 30px auto 0;
+            padding: 0 20px;
+            width: 100%;
+            align-self: center;
+        }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
-    }
+        .profile-pic-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
 
-    .card-img-top {
-      height: 250px;
-      object-fit: cover;
-    }
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+            padding: 3px; 
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        
+        .profile-pic:hover {
+            opacity: 0.8;
+        }
 
-    /* --- NEW CSS RULE TO FIX THE VIDEO --- */
-    .ratio video {
-      object-fit: cover;
-    }
+        .profile-info {
+            padding-left: 20px;
+        }
 
-    .card.fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
+        .username {
+            font-size: 20px;
+            font-weight: 400;
+            margin-right: 20px;
+        }
 
-    .card.fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+        .action-btn {
+            background-color: var(--btn-bg);
+            color: var(--text-color);
+            border: none;
+            padding: 7px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
 
-    #inquireButton {
-      background: var(--inquire-bg);
-      cursor: pointer;
-      transition: all 0.4s ease;
-    }
+        .action-btn:hover {
+            background-color: var(--btn-hover);
+            color: var(--text-color);
+        }
 
-    #inquireButton:hover {
-      transform: scale(1.05);
-      background: var(--inquire-hover-bg);
-      color: var(--inquire-hover-text);
-    }
+        .stats li {
+            font-size: 16px;
+            margin-right: 40px;
+            display: inline-block;
+        }
 
-    .contact-section {
-      padding: 50px 0;
-      border-radius: 15px;
-    }
+        .stats strong {
+            font-weight: 600;
+        }
 
-    .contact-header {
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-      font-weight: 300;
-    }
+        .bio-name {
+            font-weight: 600;
+        }
 
-    .btn-toggle-display {
-      cursor: pointer;
-      color: var(--accent-color);
-      font-weight: 500;
-    }
-  </style>
-</head>
+        .bio-text {
+            white-space: pre-wrap;
+        }
 
-<body data-bs-theme="light">
+        /* Highlights */
+        .highlights {
+            max-width: 935px;
+            width: 100%;
+            align-self: center;
+            margin: 20px auto 40px;
+            display: flex;
+            gap: 20px;
+            padding: 0 20px;
+            overflow-x: auto;
+        }
 
-  <header class="container-fluid p-4 mb-3 border-bottom">
-    <div class="d-flex flex-wrap align-items-center justify-content-between">
-      <h1 class="h3 mb-0">Margarette with Friends</h1>
-      <button id="themeToggler" class="btn btn-outline-primary">Dark Mode</button>
-    </div>
-  </header>
+        .highlight-circle {
+            width: 77px;
+            height: 77px;
+            border-radius: 50%;
+            background-color: var(--highlight-bg);
+            border: 1px solid var(--secondary-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--text-color);
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
 
-  <main class="container my-5">
-    <div class="row g-4" id="marga-friends-grid">
-    </div>
-  </main>
+        .highlight-circle:hover {
+            transform: scale(1.05);
+            border-color: var(--text-color);
+        }
 
-  <section class="container-fluid p-3 my-5 contact-section bg-body-tertiary">
-    <div class="row">
-      <div class="col text-center">
-        <h2 class="contact-header">Connect With Us</h2>
-        <div id="inquireButton" class="p-4 my-2 shadow-sm rounded-3 d-inline-block fw-bold fs-5" data-bs-toggle="modal"
-          data-bs-target="#inquireModal">
-          Send an Inquiry
-        </div>
-      </div>
-    </div>
-  </section>
+        .highlight-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
 
-  <footer class="container-fluid bg-body-secondary p-5" id="footer">
-    <div class="row">
-      <div class="col">
-        <div class="h4 my-3">Marga with Friends</div>
-        <p class="mb-1"><strong>Grade 12:</strong> Ash, Deday, Asher</p>
-        <p class="mb-1"><strong>College:</strong> Pat, Ange, Mhae, Marie, Sham, Jhie</p>
-        <p class="mb-1"><strong>College:</strong> Aj, Jet, Matt, Poonin</p>
-        <div class="mt-4 text-center btn-toggle-display" id="hideFooterBtn">Hide Footer</div>
-      </div>
-    </div>
-  </footer>
+        .highlight-text {
+            font-size: 12px;
+            font-weight: 600;
+        }
 
-  <div class="container-fluid p-3 d-none" id="showFooterContainer">
-    <div class="text-center btn-toggle-display" id="showFooterBtn">Show Footer</div>
-  </div>
+        /* Tabs */
+        .profile-tabs {
+            max-width: 935px;
+            width: 100%;
+            align-self: center;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+        }
 
-  <div class="modal fade" id="inquireModal" tabindex="-1" aria-labelledby="inquireModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="inquireModalLabel">Contact Us</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="emailInput" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
-            </div>
-            <div class="mb-3">
-              <label for="messageText" class="form-label">Message</label>
-              <textarea class="form-control" id="messageText" rows="4"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary"
-            style="background-color: var(--accent-color); border-color: var(--accent-color);">Send Message</button>
-        </div>
-      </div>
-    </div>
-  </div>
+        .tab-item {
+            padding: 15px 0;
+            color: var(--secondary-text);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
+        .tab-item.active {
+            color: var(--text-color);
+            border-top: 1px solid var(--text-color);
+            margin-top: -1px;
+        }
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+        /* Grid */
+        .grid-container {
+            max-width: 935px;
+            width: 100%;
+            align-self: center;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            padding-bottom: 20px;
+        }
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
+        .grid-item {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            background-color: var(--btn-bg);
+            overflow: hidden;
+            cursor: pointer;
+        }
 
-      const friendsData = [
-        { title: "Margarette", picture: "me.jfif", type: "image" },
-        { title: "G12 Friends", picture: "G12.jpg", type: "image" },
-        { title: "SHS Trio", picture: "g12-trio.jpg", type: "image" },
-        { title: "My Trio", picture: "my-trio.jpg", type: "image" },
-        { title: "College Trio", picture: "col-trio.jpg", type: "image" },
-        { title: "Totiemarie", picture: "totiemarie.jpg", type: "image" },
-        { title: "Totiemarie & Friends", picture: "saya yarn.jpg", type: "image" },
-        { title: "Totiemarie & Friends", picture: "complete.jpg", type: "image" },
-        { title: "Totiemarie & Friends", picture: "smile.jpg", type: "image" },
-        { title: "Totiemarie & Friends", picture: "taray pa din.jpg", type: "image" },
-        { title: "Totiemarie & Friends", picture: "taray.jpg", type: "image" },
-        { title: "Totiemarie & Friends", picture: "yieee.jpg", type: "image" },
-         { title: "Marga", picture: "ewan.jfif", type: "image" },
-         { title: "Marga", picture: "bored.jfif", type: "image" },
-         { title: "Marga", picture: "luhh.jfif", type: "image" },
-         { title: "with crush", picture: "crushiee.jfif", type: "image" },
-         { title: "Totiemarie & Friends", picture: "team-walter.jfif", type: "image" },
-         { title: "UNO", picture: "Unogang.jfif", type: "image" },
-         { title: "Fun Moments", video: "byahe.mp4", type: "video" },
-         { title: "Fun Moments", video: "what.mp4", type: "video" },
-         { title: "Fun Moments", video: "masaya sila.mp4", type: "video" }
-      ];
+        .grid-item img, .grid-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-      const elements = {
-        grid: document.getElementById('marga-friends-grid'),
-        themeToggler: document.getElementById('themeToggler'),
-        footer: document.getElementById('footer'),
-        hideFooterBtn: document.getElementById('hideFooterBtn'),
-        showFooterContainer: document.getElementById('showFooterContainer'),
-        showFooterBtn: document.getElementById('showFooterBtn'),
-      };
+        /* Grid Overlay */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
 
-      function renderCards() {
-        const cardHTML = friendsData.map(item => {
-          if (item.type === 'video') {
-            return `
-              <div class="col-lg-4 col-md-6 col-12">
-                <div class="card my-3 shadow-sm rounded-4 overflow-hidden fade-in">
-                  <div class="card-body">
-                    <h5 class="card-title text-center mb-3">${item.title}</h5>
-                    <div class="ratio ratio-16x9">
-                      <video class="rounded" loop muted playsinline>
-                        <source src="video/${item.video}" type="video/mp4">
-                        Your browser does not support the video tag.
-                      </video>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            `;
-          }
-          else {
-            return `
-              <div class="col-lg-4 col-md-6 col-12">
-                <div class="card my-3 shadow-sm rounded-4 overflow-hidden fade-in">
-                  <img src="img/${item.picture}" class="card-img-top" alt="${item.title}">
-                  <div class="card-body">
-                    <h5 class="card-title text-center">${item.title}</h5>
-                  </div>
-                </div>
-              </div>
-            `;
-          }
-        }).join('');
-        elements.grid.innerHTML = cardHTML;
-      }
+        .grid-item:hover .grid-overlay {
+            opacity: 1;
+        }
 
-      function toggleTheme() {
-        const currentTheme = document.body.getAttribute('data-bs-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        document.body.setAttribute('data-bs-theme', newTheme);
-        elements.themeToggler.textContent = newTheme === 'light' ? 'Dark Mode' : 'Light Mode';
-        elements.themeToggler.classList.toggle('btn-outline-primary');
-        elements.themeToggler.classList.toggle('btn-outline-light');
-      }
+        .type-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 18px;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+            z-index: 2;
+        }
 
-      function hideFooter() {
-        elements.footer.classList.add('d-none');
-        elements.showFooterContainer.classList.remove('d-none');
-      }
+        /* Footer Layout */
+        .footer-modern {
+            margin-top: auto;
+            background-color: var(--footer-bg);
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--secondary-text);
+            border-top: 1px solid var(--border-color);
+        }
 
-      function showFooter() {
-        elements.footer.classList.remove('d-none');
-        elements.showFooterContainer.classList.add('d-none');
-      }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
 
-      elements.themeToggler.addEventListener('click', toggleTheme);
-      elements.hideFooterBtn.addEventListener('click', hideFooter);
-      elements.showFooterBtn.addEventListener('click', showFooter);
+        .credits-section {
+            max-width: 600px;
+            margin: 15px auto;
+            padding: 15px;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            display: none; 
+        }
 
-      renderCards();
+        .credits-section.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
 
-      const cards = document.querySelectorAll('.card.fade-in');
-      
-      const cardObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !entry.target.classList.contains('visible')) {
-            entry.target.classList.add('visible');
-          }
-          
-          const video = entry.target.querySelector('video');
-          if (video) {
-            if (entry.isIntersecting) {
-              video.play();
-            } else {
-              video.pause();
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Modals */
+        .modal-content {
+            background-color: var(--modal-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+        
+        .form-control, .form-select {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border-color: var(--border-color);
+        }
+        
+        .form-control:focus, .form-select:focus {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border-color: var(--secondary-text);
+            box-shadow: none;
+        }
+
+        .menu-list .list-group-item {
+            background-color: transparent;
+            color: var(--text-color);
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px;
+            cursor: pointer;
+        }
+        .menu-list .list-group-item:hover {
+            background-color: var(--list-hover);
+        }
+
+        /* Lightbox Viewer & Carousel */
+        .viewer-media {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .modal-dialog-xl {
+            max-width: 90%; 
+        }
+
+        /* Carousel Arrows Styling */
+        .carousel-control-prev, .carousel-control-next {
+            width: 10%;
+        }
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.8));
+        }
+        
+        /* Edit Profile Specifics */
+        .change-photo-btn {
+            color: var(--link-blue);
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        .change-photo-btn:hover {
+            color: var(--text-color);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .profile-header {
+                display: flex;
+                flex-direction: column;
             }
-          }
+            .profile-pic-container {
+                justify-content: flex-start;
+                margin-bottom: 15px;
+            }
+            .profile-pic {
+                width: 80px;
+                height: 80px;
+            }
+            .profile-info {
+                padding-left: 0;
+            }
+            .stats {
+                border-top: 1px solid var(--border-color);
+                padding: 10px 0;
+                margin-top: 15px;
+                display: flex;
+                justify-content: space-around;
+            }
+            .stats li {
+                margin-right: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .profile-tabs {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar sticky-top">
+        <div class="container-fluid" style="max-width: 935px;">
+            <div class="brand-text">mrgrttdlrs</div>
+            <div class="d-flex align-items-center gap-3">
+                <button id="themeToggle" class="btn btn-link text-decoration-none" style="color: var(--text-color);">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <!-- Menu Button -->
+                <i class="fas fa-bars" id="menuBtn" style="font-size: 20px; cursor: pointer;"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="profile-header">
+        <div class="row">
+            <div class="col-md-4 profile-pic-container">
+                <!-- Profile Pic (Triggers Viewer) -->
+                <img src="img/me.jfif" alt="Margarette" class="profile-pic" id="profilePicDisplay" title="View Profile Photo">
+            </div>
+            <div class="col-md-8 profile-info">
+                <div class="d-flex align-items-center mb-3 flex-wrap gap-3">
+                    <h2 class="username mb-0">mrgrttdlrs</h2>
+                    <div class="d-flex gap-2">
+                        <button class="action-btn" id="editProfileBtn">Edit profile</button>
+                        <button class="action-btn" id="shareProfileBtn">Share profile</button>
+                    </div>
+                </div>
+
+                <ul class="list-unstyled stats mb-3 d-none d-md-block">
+                    <li><strong id="postCountDesktop">0</strong> posts</li>
+                    <li><strong>13</strong> followers</li>
+                    <li><strong>20</strong> following</li>
+                </ul>
+
+                <div class="bio">
+                    <div class="bio-name" id="displayBioName">margarette Dela rosa</div>
+                    <div class="bio-text" id="displayBioText">FORGET the Mistake REMEMBER the Lesson</div>
+                </div>
+                
+                <!-- Mobile Stats -->
+                <ul class="list-unstyled stats d-md-none">
+                    <li><strong id="postCountMobile">0</strong> <span style="color: var(--secondary-text);">posts</span></li>
+                    <li><strong>13</strong> <span style="color: var(--secondary-text);">followers</span></li>
+                    <li><strong>20</strong> <span style="color: var(--secondary-text);">following</span></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Highlights / Add Button -->
+    <div class="highlights">
+        <div class="highlight-item" data-bs-toggle="modal" data-bs-target="#addPostModal">
+            <div class="highlight-circle">
+                <i class="fas fa-plus"></i>
+            </div>
+            <span class="highlight-text mt-1">New</span>
+        </div>
+        <div class="highlight-item">
+            <div class="highlight-circle" style="background: #333;"></div>
+            <span class="highlight-text mt-1"></span>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="profile-tabs">
+        <div class="tab-item active" onclick="filterGrid('me', this)">
+            <i class="fas fa-user"></i>
+            <span class="d-none d-sm-block">ME</span>
+        </div>
+        <div class="tab-item" onclick="filterGrid('friends', this)">
+            <i class="fas fa-users"></i>
+            <span class="d-none d-sm-block">FRIENDS</span>
+        </div>
+        <div class="tab-item" onclick="filterGrid('fun', this)">
+            <i class="fas fa-play"></i>
+            <span class="d-none d-sm-block">FUN MOMENTS</span>
+        </div>
+    </div>
+
+    <!-- Grid Content -->
+    <div class="grid-container" id="contentGrid">
+        <!-- Content injected via JS -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-modern">
+        <div class="container">
+            <!-- Visible Toggle Button -->
+            <button id="creditsToggle" class="btn btn-outline-light btn-sm mb-3" style="border-radius: 20px; padding: 5px 20px;">
+                <i class="fas fa-users me-2"></i>View Friends List
+            </button>
+
+            <!-- Hidden Credits Section -->
+            <div id="creditsSection" class="credits-section">
+                <h6 class="mb-3 text-uppercase fw-bold">The Squad</h6>
+                <div class="row text-start">
+                    <div class="col-md-4 mb-2">
+                        <strong>Grade 12:</strong><br> Ash, Deday, Asher
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <strong>College (Girlies):</strong><br> Pat, Ange, Mhae, Marie, Sham, Jhie
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <strong>College (Boys):</strong><br> Aj, Jet, Matt, Poonin
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-links mt-3">
+                <span>Meta</span>
+                <span>About</span>
+                <span>Blog</span>
+                <span>Jobs</span>
+                <span>Help</span>
+                <span>API</span>
+                <span>Privacy</span>
+                <span>Terms</span>
+            </div>
+
+            <div class="mt-3">
+                © 2025 Margarette Dela Rosa • Marga w/Friends
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= MODALS ================= -->
+
+    <!-- 1. View Profile Picture Modal (Lightbox) -->
+    <div class="modal fade" id="viewProfilePicModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background: transparent; border: none;">
+                <div class="modal-body text-center position-relative">
+                     <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3" data-bs-dismiss="modal" aria-label="Close" style="background-color: white; opacity: 0.8;"></button>
+                     <img src="" id="fullProfilePic" class="rounded-circle border border-3 border-white shadow" style="width: 300px; height: 300px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Edit Profile Modal (Updated) -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Profile</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Change Photo Section -->
+                    <div class="d-flex flex-column align-items-center mb-4 p-3 rounded" style="background: var(--highlight-bg);">
+                        <img src="" id="editProfilePreview" class="rounded-circle mb-3" style="width: 80px; height: 80px; object-fit: cover;">
+                        <button class="change-photo-btn" onclick="document.getElementById('profilePicInput').click()">Change profile photo</button>
+                        <!-- Hidden Input for Photo -->
+                        <input type="file" id="profilePicInput" hidden accept="image/*">
+                    </div>
+
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" id="editNameInput">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Bio</label>
+                            <textarea class="form-control" id="editBioInput" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary px-4" onclick="saveProfileChanges()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Add Post Modal -->
+    <div class="modal fade" id="addPostModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Post</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addPostForm">
+                        <div class="mb-3">
+                            <label class="form-label">Select Category</label>
+                            <select class="form-select" id="postCategory">
+                                <option value="me">Me</option>
+                                <option value="friends">Friends</option>
+                                <option value="fun">Fun Moments (Video)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Upload Image/Video</label>
+                            <input class="form-control" type="file" id="postFile" accept="image/*,video/*">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Caption (Title)</label>
+                            <input type="text" class="form-control" id="postTitle" placeholder="Say something...">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="addNewPost()">Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Viewer Modal (Lightbox for Posts) -->
+    <div class="modal fade" id="viewPostModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content" style="background: transparent; border: none;">
+                <div class="modal-body p-0 position-relative text-center">
+                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3" data-bs-dismiss="modal" aria-label="Close" style="background-color: white; opacity: 0.8;"></button>
+                    
+                    <!-- Viewer Content (Injected JS) -->
+                    <div id="viewerContent"></div>
+                    
+                    <div class="mt-2 p-2 rounded" style="background: rgba(0,0,0,0.7); color: white; display: inline-block;">
+                        <h5 id="viewerTitle" class="m-0"></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Menu Modal -->
+    <div class="modal fade" id="menuModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mx-auto">Settings</h5>
+                </div>
+                <div class="list-group menu-list">
+                    <button class="list-group-item text-start"><i class="fas fa-cog me-3"></i>Settings and privacy</button>
+                    <button class="list-group-item text-start"><i class="fas fa-chart-line me-3"></i>Your activity</button>
+                    <button class="list-group-item text-start"><i class="fas fa-bookmark me-3"></i>Saved</button>
+                    <button class="list-group-item text-start" id="menuThemeToggle"><i class="fas fa-moon me-3"></i>Switch appearance</button>
+                    <button class="list-group-item text-start text-danger">Log Out</button>
+                    <button class="list-group-item text-center" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Share Profile Modal -->
+    <div class="modal fade" id="shareProfileModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-4">
+                <h5 class="mb-3">Share Profile</h5>
+                <div class="bg-white p-3 d-inline-block rounded mb-3">
+                    <i class="fas fa-qrcode fa-6x text-dark"></i>
+                </div>
+                <p class="text-muted">@mrgrttdlrs</p>
+                <button class="btn btn-primary w-100" onclick="copyProfileLink()">
+                    <i class="fas fa-link me-2"></i>Copy Link
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initial Data
+        const friendsData = [
+            // ME (Includes a Carousel "Photo Dump")
+            { 
+                title: "My Photo Dump 📸", 
+                media: ["img/me.jfif", "img/ewan.jfif", "img/bored.jfif"], 
+                type: "carousel", 
+                category: "me", 
+                likes: 540, comments: 30 
+            },
+            { title: "Marga", source: "img/luhh.jfif", type: "image", category: "me", likes: 150, comments: 12 },
+            { title: "with crush", source: "img/crushiee.jfif", type: "image", category: "me", likes: 300, comments: 45 },
+            
+            // FRIENDS
+            { title: "G12 Friends", source: "img/G12.jpg", type: "image", category: "friends", likes: 80, comments: 5 },
+            { title: "SHS Trio", source: "img/g12-trio.jpg", type: "image", category: "friends", likes: 85, comments: 7 },
+            { title: "My Trio", source: "img/my-trio.jpg", type: "image", category: "friends", likes: 90, comments: 9 },
+            { title: "College Trio", source: "img/col-trio.jpg", type: "image", category: "friends", likes: 110, comments: 10 },
+            { title: "Totiemarie", source: "img/totiemarie.jpg", type: "image", category: "friends", likes: 130, comments: 14 },
+            { title: "Totiemarie & Friends", source: "img/saya yarn.jpg", type: "image", category: "friends", likes: 125, comments: 11 },
+            { title: "Totiemarie & Friends", source: "img/complete.jpg", type: "image", category: "friends", likes: 140, comments: 20 },
+            { title: "Totiemarie & Friends", source: "img/smile.jpg", type: "image", category: "friends", likes: 160, comments: 25 },
+            
+            // FUN MOMENTS (Videos)
+            { title: "Fun Moments", source: "video/byahe.mp4", type: "video", category: "fun", likes: 500, comments: 60 },
+            { title: "Fun Moments", source: "video/what.mp4", type: "video", category: "fun", likes: 450, comments: 55 },
+            { title: "Fun Moments", source: "video/masaya sila.mp4", type: "video", category: "fun", likes: 600, comments: 80 }
+        ];
+
+        const grid = document.getElementById('contentGrid');
+        let currentCategory = 'me'; 
+
+        // Function to render the grid
+        function filterGrid(filterType, tabElement) {
+            currentCategory = filterType;
+
+            if(tabElement) {
+                document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+                tabElement.classList.add('active');
+            } else {
+                document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+                if(filterType === 'me') document.querySelectorAll('.tab-item')[0].classList.add('active');
+                if(filterType === 'friends') document.querySelectorAll('.tab-item')[1].classList.add('active');
+                if(filterType === 'fun') document.querySelectorAll('.tab-item')[2].classList.add('active');
+            }
+
+            grid.innerHTML = '';
+
+            const filteredData = friendsData.filter(item => item.category === filterType);
+
+            filteredData.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'grid-item';
+                
+                let mediaHtml = '';
+                let iconHtml = '';
+
+                if (item.type === 'carousel') {
+                    mediaHtml = `<img src="${item.media[0]}" alt="${item.title}">`;
+                    iconHtml = `<i class="fas fa-clone type-icon"></i>`;
+                } 
+                else if (item.type === 'video') {
+                    mediaHtml = `
+                        <video src="${item.source}" loop muted playsinline></video>
+                    `;
+                    iconHtml = `<i class="fas fa-video type-icon"></i>`;
+                } 
+                else {
+                    mediaHtml = `<img src="${item.source}" alt="${item.title}">`;
+                }
+
+                const overlayHtml = `
+                    <div class="grid-overlay">
+                        <span><i class="fas fa-heart"></i> ${item.likes}</span>
+                        <span><i class="fas fa-comment"></i> ${item.comments}</span>
+                    </div>
+                `;
+
+                div.innerHTML = mediaHtml + iconHtml + overlayHtml;
+
+                div.addEventListener('mouseenter', function() {
+                    const video = this.querySelector('video');
+                    if(video) video.play();
+                });
+
+                div.addEventListener('mouseleave', function() {
+                    const video = this.querySelector('video');
+                    if(video) {
+                        video.pause();
+                        video.currentTime = 0; 
+                    }
+                });
+
+                div.addEventListener('click', function() {
+                    openViewer(item);
+                });
+
+                grid.appendChild(div);
+            });
+
+            document.getElementById('postCountDesktop').textContent = filteredData.length;
+            document.getElementById('postCountMobile').textContent = filteredData.length;
+        }
+
+        // Viewer Logic (Carousel Support)
+        const viewModalEl = document.getElementById('viewPostModal');
+        const viewModal = new bootstrap.Modal(viewModalEl);
+
+        function openViewer(item) {
+            const container = document.getElementById('viewerContent');
+            const titleEl = document.getElementById('viewerTitle');
+            titleEl.textContent = item.title;
+
+            if (item.type === 'carousel') {
+                let indicators = '';
+                let innerItems = '';
+
+                item.media.forEach((imgSrc, index) => {
+                    const isActive = index === 0 ? 'active' : '';
+                    innerItems += `
+                        <div class="carousel-item ${isActive}">
+                            <img src="${imgSrc}" class="viewer-media rounded shadow" alt="Slide ${index}">
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = `
+                    <div id="carouselExample" class="carousel slide">
+                        <div class="carousel-inner">
+                            ${innerItems}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                `;
+            } 
+            else if (item.type === 'video') {
+                container.innerHTML = `<video src="${item.source}" controls autoplay class="viewer-media rounded shadow"></video>`;
+            } 
+            else {
+                container.innerHTML = `<img src="${item.source}" class="viewer-media rounded shadow" alt="${item.title}">`;
+            }
+            viewModal.show();
+        }
+
+        viewModalEl.addEventListener('hidden.bs.modal', event => {
+            document.getElementById('viewerContent').innerHTML = ''; 
         });
-      }, { 
-        threshold: 0.5 
-      });
 
-      cards.forEach(card => cardObserver.observe(card));
+        // Add New Post Logic
+        function addNewPost() {
+            const categoryInput = document.getElementById('postCategory').value;
+            const fileInput = document.getElementById('postFile');
+            const titleInput = document.getElementById('postTitle').value;
 
-    });
-  </script>
+            if (fileInput.files && fileInput.files[0]) {
+                const file = fileInput.files[0];
+                const fileUrl = URL.createObjectURL(file); 
+                let type = 'image';
+                if (file.type.startsWith('video') || categoryInput === 'fun') type = 'video';
 
+                friendsData.unshift({ 
+                    title: titleInput || "New Post",
+                    source: fileUrl,
+                    type: type,
+                    category: categoryInput,
+                    likes: 0,
+                    comments: 0
+                });
+
+                bootstrap.Modal.getInstance(document.getElementById('addPostModal')).hide();
+                document.getElementById('addPostForm').reset();
+                filterGrid(categoryInput, null);
+            } else {
+                alert("Please select a file to upload.");
+            }
+        }
+
+        // Menu Modal Logic
+        const menuBtn = document.getElementById('menuBtn');
+        const menuModal = new bootstrap.Modal(document.getElementById('menuModal'));
+        menuBtn.addEventListener('click', () => menuModal.show());
+
+        // === UPDATED: Edit Profile Logic (Including Picture) ===
+        const editProfileBtn = document.getElementById('editProfileBtn');
+        const editProfileModal = new bootstrap.Modal(document.getElementById('editProfileModal'));
+        
+        const displayBioName = document.getElementById('displayBioName');
+        const displayBioText = document.getElementById('displayBioText');
+        const profilePicDisplay = document.getElementById('profilePicDisplay'); // Main profile pic
+
+        const editNameInput = document.getElementById('editNameInput');
+        const editBioInput = document.getElementById('editBioInput');
+        const editProfilePreview = document.getElementById('editProfilePreview'); // Preview in modal
+        const profilePicInput = document.getElementById('profilePicInput'); // Hidden input
+        
+        let tempProfilePicUrl = ""; // Store new image URL temporarily
+
+        // Open Edit Modal
+        editProfileBtn.addEventListener('click', () => {
+            // 1. Populate Name and Bio
+            editNameInput.value = displayBioName.innerText;
+            editBioInput.value = displayBioText.innerText;
+            
+            // 2. Populate Image Preview with Current Image
+            editProfilePreview.src = profilePicDisplay.src;
+            tempProfilePicUrl = profilePicDisplay.src; // Default to current
+
+            editProfileModal.show();
+        });
+
+        // Handle File Selection in Edit Modal
+        profilePicInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const url = URL.createObjectURL(this.files[0]);
+                editProfilePreview.src = url; // Update preview only
+                tempProfilePicUrl = url; // Store for saving
+            }
+        });
+
+        // Save Changes
+        function saveProfileChanges() {
+            // Update Text
+            displayBioName.innerText = editNameInput.value;
+            displayBioText.innerText = editBioInput.value;
+            
+            // Update Main Profile Picture
+            profilePicDisplay.src = tempProfilePicUrl;
+
+            editProfileModal.hide();
+        }
+
+        // === UPDATED: Profile Picture Click (View Full Size) ===
+        const viewProfilePicModal = new bootstrap.Modal(document.getElementById('viewProfilePicModal'));
+        const fullProfilePic = document.getElementById('fullProfilePic');
+
+        profilePicDisplay.addEventListener('click', () => {
+            fullProfilePic.src = profilePicDisplay.src;
+            viewProfilePicModal.show();
+        });
+
+        // Share Profile Logic
+        const shareProfileBtn = document.getElementById('shareProfileBtn');
+        const shareProfileModal = new bootstrap.Modal(document.getElementById('shareProfileModal'));
+        shareProfileBtn.addEventListener('click', () => shareProfileModal.show());
+
+        function copyProfileLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert("Link copied to clipboard!");
+                shareProfileModal.hide();
+            });
+        }
+
+        // Footer Logic
+        const creditsToggle = document.getElementById('creditsToggle');
+        const creditsSection = document.getElementById('creditsSection');
+        
+        creditsToggle.addEventListener('click', () => {
+            if (creditsSection.classList.contains('show')) {
+                creditsSection.classList.remove('show');
+                creditsToggle.innerHTML = '<i class="fas fa-users me-2"></i>View Friends List';
+            } else {
+                creditsSection.classList.add('show');
+                creditsToggle.innerHTML = '<i class="fas fa-chevron-up me-2"></i>Hide Friends List';
+            }
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const menuThemeToggle = document.getElementById('menuThemeToggle'); 
+        const themeIcon = document.getElementById('themeIcon');
+        let isDark = true;
+
+        function toggleTheme() {
+            isDark = !isDark;
+            document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            themeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+            
+            const closeBtns = document.querySelectorAll('.btn-close');
+            closeBtns.forEach(btn => {
+                if(isDark) btn.classList.add('btn-close-white');
+                else btn.classList.remove('btn-close-white');
+            });
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        menuThemeToggle.addEventListener('click', toggleTheme);
+
+        // Initial Load
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstTab = document.querySelector('.tab-item');
+            filterGrid('me', firstTab);
+        });
+
+    </script>
 </body>
-
 </html>
