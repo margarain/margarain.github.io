@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Margarette Dela Rosa </title>
+  <title>Margarette Dela Rosa</title>
   <link rel="icon" type="image/png" href="img/logo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -13,69 +13,115 @@
     body {
       background: linear-gradient(to right, #ffb6c1, #e0bbf7, #a1c4fd);
       font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
     }
 
-    .sidebar {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
+    /* GLASSMORPHISM BASE STYLE */
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
       border-radius: 15px;
-      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.7);
-      padding-top: 2rem;
     }
 
+    /* SIDEBAR STYLES */
+    .sidebar {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .sidebar img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border: 4px solid rgba(255, 255, 255, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Desktop Specific Sidebar (Sticky) */
+    @media (min-width: 992px) {
+      .sidebar-container {
+        position: sticky;
+        top: 2rem;
+        height: calc(100vh - 4rem);
+        overflow-y: auto;
+        /* Hides scrollbar but allows scrolling if content is tall */
+        scrollbar-width: none; 
+      }
+      .sidebar-container::-webkit-scrollbar { 
+        display: none; 
+      }
+    }
+
+    /* Mobile/Tablet Specific Sidebar */
+    @media (max-width: 991.98px) {
+      .sidebar-container {
+        position: relative;
+        height: auto;
+        margin-bottom: 1.5rem;
+      }
+      
+      .sidebar {
+        padding: 1.5rem;
+      }
+
+      .sidebar img {
+        width: 140px; /* Smaller image on mobile */
+        height: 140px;
+      }
+    }
+
+    /* NAVBAR */
     .navbar {
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.2);
-      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.7);
-      border-radius: 12px;
       margin-bottom: 1.5rem;
-    }
-
-    .custom-card {
-      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.7);
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(10px);
-      margin-bottom: 1.5rem;
+      z-index: 1000; /* Ensures nav stays on top */
     }
 
     .nav-link {
       cursor: pointer;
       font-weight: 600;
+      color: #333;
+      transition: color 0.3s ease;
     }
 
+    .nav-link:hover {
+      color: #6a5acd;
+    }
+
+    /* BUTTONS & CARDS */
     .custom-btn {
       background-color: #e0bbf7;
       border: none;
       color: #333;
       font-weight: 600;
+      transition: all 0.3s ease;
     }
 
     .custom-btn:hover {
       background-color: #d1a4f3;
       color: black;
+      transform: translateY(-2px);
     }
 
-    .content-section {
-      display: none;
+    .custom-card, .service-card {
+      height: 100%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .service-card {
-      background: rgba(255, 255, 255, 0.4);
-      padding: 30px;
-      border-radius: 15px;
+      padding: 2rem;
       text-align: center;
-      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05), -5px -5px 15px rgba(255, 255, 255, 0.5);
-      transition: all 0.3s ease;
-      height: 100%;
     }
 
     .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1), -10px -10px 20px rgba(255, 255, 255, 0.7);
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.5);
     }
 
     .service-card i {
@@ -84,11 +130,18 @@
       margin-bottom: 1rem;
     }
 
-    .service-card h4 {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
+    /* CONTENT SECTIONS */
+    .content-section {
+      display: none; /* JS handles visibility */
+      animation: fadeIn 0.5s ease-in-out;
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* CV Section Styles */
     #cv h3 {
       margin-top: 2rem;
       margin-bottom: 1rem;
@@ -98,222 +151,255 @@
     }
 
     #cv ul {
-      list-style-type: none;
-      padding-left: 0;
+      padding-left: 1rem;
     }
 
     #cv ul li {
-      padding: 4px 0;
+      margin-bottom: 0.5rem;
     }
 
-    #cv .cv-link {
-      color: #3f3b6c;
-      text-decoration: none;
-      font-weight: 600;
-      cursor: pointer;
+    /* Modal Fix for Mobile */
+    .modal-content {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
     }
-
-    #cv .cv-link:hover {
-      text-decoration: underline;
+    
+    .pdf-container {
+        width: 100%;
+        height: 100%;
     }
   </style>
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-3 sidebar text-center">
-        <img src="img/marga.gif" class="img-fluid rounded-circle mb-3" alt="Margarette">
-        <h3>Margarette Dela Rosa</h3>
-        <p>IT Student</p>
-        <p><strong>Email:</strong> delarosamargarette7@gmail.com</p>
-        <p><strong>Phone:</strong> upon request</p>
-        <p><strong>Location:</strong> Batangas, Philippines</p>
-        <div>
-          <a href="https://github.com/margarain" target="_blank"><i class="fab fa-github fa-2x mx-2"></i></a>
-          <a href="https://instagram.com/mrgrttdlrs" target="_blank"><i class="fab fa-instagram fa-2x mx-2"></i></a>
-          <a href="https://messenger.com/m.me/margarette83" target="_blank"><i
-              class="fab fa-facebook-messenger fa-2x mx-2"></i></a>
+  <div class="container-fluid p-3 p-md-4">
+    <div class="row g-4">
+      
+      <!-- SIDEBAR COLUMN -->
+      <div class="col-lg-3">
+        <div class="sidebar sidebar-container glass-effect">
+          <img src="img/marga.gif" class="rounded-circle mb-3 shadow-sm" alt="Margarette">
+          <h3 class="h4 fw-bold">Margarette Dela Rosa</h3>
+          <p class="text-muted mb-2">IT Student</p>
+          
+          <hr class="mx-auto opacity-50" style="width: 80%;">
+          
+          <div class="d-flex flex-column gap-1 mb-3 small">
+            <span><i class="fas fa-envelope me-2"></i>delarosamargarette7@gmail.com</span>
+            <span><i class="fas fa-phone me-2"></i>upon request</span>
+            <span><i class="fas fa-map-marker-alt me-2"></i>Batangas, Philippines</span>
+          </div>
+
+          <div class="mt-3">
+            <a href="https://github.com/margarain" target="_blank" class="text-dark mx-2 hover-zoom"><i class="fab fa-github fa-2x"></i></a>
+            <a href="https://instagram.com/mrgrttdlrs" target="_blank" class="text-dark mx-2 hover-zoom"><i class="fab fa-instagram fa-2x"></i></a>
+            <a href="https://messenger.com/m.me/margarette83" target="_blank" class="text-dark mx-2 hover-zoom"><i class="fab fa-facebook-messenger fa-2x"></i></a>
+          </div>
         </div>
       </div>
 
-      <div class="col-md-9 pt-3">
-        <nav class="navbar navbar-expand-lg sticky-top">
-          <div class="container-fluid justify-content-end">
-            <ul class="navbar-nav">
-              <li class="nav-item"><a class="nav-link" data-section="about">About</a></li>
-              <li class="nav-item"><a class="nav-link" data-section="project">Projects</a></li>
-              <li class="nav-item"><a class="nav-link" data-section="cv">CV</a></li>
-            </ul>
+      <!-- MAIN CONTENT COLUMN -->
+      <div class="col-lg-9">
+        
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg glass-effect sticky-top">
+          <div class="container-fluid">
+            <span class="navbar-brand d-lg-none fw-bold text-secondary">Menu</span>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+              <ul class="navbar-nav text-center">
+                <li class="nav-item"><a class="nav-link px-3" data-section="about">About</a></li>
+                <li class="nav-item"><a class="nav-link px-3" data-section="project">Projects</a></li>
+                <li class="nav-item"><a class="nav-link px-3" data-section="cv">CV</a></li>
+              </ul>
+            </div>
           </div>
         </nav>
 
-        <div id="about" class="content-section p-4">
-          <h2>About Me</h2>
-          <p>A passionate second-year IT student with a strong love for learning, technology, and personal growth. I am
-            driven by curiosity and a desire to understand how things work, which fuels my journey into the vast world
-            of Information Technology. I am constantly seeking new challenges and opportunities to expand my skills and
-            knowledge.</p>
+        <!-- About Section -->
+        <div id="about" class="content-section glass-effect p-4">
+          <h2 class="mb-3 border-bottom pb-2">About Me</h2>
+          <p class="lead fs-6">A motivated IT student with a strong passion for technology, problem-solving, and continuous learning. My curiosity drives me to explore how things work and deepen my skills in the ever-evolving field of Information Technology..</p>
 
           <h2 class="mt-5 mb-4 text-center">What I Do</h2>
           <div class="row g-4">
-            <div class="col-lg-6">
-              <div class="service-card">
+            <div class="col-md-6">
+              <div class="service-card glass-effect h-100">
                 <i class="fas fa-code"></i>
-                <h4>Front-End Development</h4>
-                <p>I build modern, user-friendly websites using HTML, CSS, and JavaScript, focusing on clean code and
-                  performance.</p>
+                <h4>Front-End Dev</h4>
+                <p class="small">Building modern, user-friendly websites using HTML, CSS, and JavaScript.</p>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="service-card">
+            <div class="col-md-6">
+              <div class="service-card glass-effect h-100">
                 <i class="fas fa-mobile-alt"></i>
                 <h4>Responsive Design</h4>
-                <p>I ensure that websites look and function perfectly on all devices, from large desktops to small
-                  mobile phones.</p>
+                <p class="small">Ensuring websites look and function perfectly on all devices.</p>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="service-card">
+            <div class="col-md-6">
+              <div class="service-card glass-effect h-100">
                 <i class="fas fa-palette"></i>
                 <h4>UI/UX Concepts</h4>
-                <p>I enjoy creating intuitive and visually appealing layouts that provide a great user experience.</p>
+                <p class="small">Creating intuitive and visually appealing layouts for user experience.</p>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="service-card">
+            <div class="col-md-6">
+              <div class="service-card glass-effect h-100">
                 <i class="fas fa-server"></i>
                 <h4>Back-end</h4>
-                <p>I create secure and efficient back-end systems using PHP and MySQL, handling databases, server logic,
-                  and integrations to support web applications.</p>
+                <p class="small">Secure and efficient back-end systems using PHP and MySQL.</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div id="project" class="content-section p-4">
-          <h2>Projects</h2>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="card custom-card">
-                <div class="card-body">
-                  <h5 class="card-title">A04</h5>
-                  <p class="card-text">Redmi 14C.</p><a href="A04/index.html" class="btn custom-btn">View
-                    Project</a>
+        <!-- Project Section -->
+        <div id="project" class="content-section p-0">
+          <h2 class="glass-effect p-3 mb-4">Projects</h2>
+          <div class="row g-4">
+            <!-- Project Items -->
+            <div class="col-sm-6 col-lg-4">
+              <div class="card custom-card glass-effect border-0">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title fw-bold">A04</h5>
+                  <p class="card-text flex-grow-1">Redmi 14C Landing Page.</p>
+                  <a href="A04/index.html" class="btn custom-btn w-100 mt-2">View Project</a>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="card custom-card">
-                <div class="card-body">
-                  <h5 class="card-title">A05</h5>
-                  <p class="card-text">Welcome to Vigan City.</p><a href="A05/index.html" class="btn custom-btn">View
-                    Project</a>
+            
+            <div class="col-sm-6 col-lg-4">
+              <div class="card custom-card glass-effect border-0">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title fw-bold">A05</h5>
+                  <p class="card-text flex-grow-1">Welcome to Vigan City.</p>
+                  <a href="A05/index.html" class="btn custom-btn w-100 mt-2">View Project</a>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="card custom-card">
-                <div class="card-body">
-                  <h5 class="card-title">A06</h5>
-                  <p class="card-text">Marga With Friends.</p><a href="A06/index.html" class="btn custom-btn">View
-                    Project</a>
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="card custom-card glass-effect border-0">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title fw-bold">A06</h5>
+                  <p class="card-text flex-grow-1">Marga With Friends.</p>
+                  <a href="A06/index.html" class="btn custom-btn w-100 mt-2">View Project</a>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="card custom-card">
-                <div class="card-body">
-                  <h5 class="card-title">A07</h5>
-                  <p class="card-text">Dog Breed.</p><a href="A07/index.html" class="btn custom-btn">View Project</a>
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="card custom-card glass-effect border-0">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title fw-bold">A07</h5>
+                  <p class="card-text flex-grow-1">Dog Breed Gallery.</p>
+                  <a href="A07/index.html" class="btn custom-btn w-100 mt-2">View Project</a>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="card custom-card">
-                <div class="card-body">
-                  <h5 class="card-title">A08</h5>
-                  <p class="card-text">Taming the Waves</p><a
-                    href="A08/EZ-Parallax-master/EZ-Parallax-master/banner.html" class="btn custom-btn">View Project</a>
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="card custom-card glass-effect border-0">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title fw-bold">A08</h5>
+                  <p class="card-text flex-grow-1">Taming the Waves (Parallax).</p>
+                  <a href="A08/EZ-Parallax-master/EZ-Parallax-master/banner.html" class="btn custom-btn w-100 mt-2">View Project</a>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="card custom-card">
-                <div class="card-body">
-                  <h5 class="card-title">A09</h5>
-                  <p class="card-text">Birthday</p><a href="A09/index.html" class="btn custom-btn">View
-                    Project</a>
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="card custom-card glass-effect border-0">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title fw-bold">A09</h5>
+                  <p class="card-text flex-grow-1">Birthday Card.</p>
+                  <a href="A09/index.html" class="btn custom-btn w-100 mt-2">View Project</a>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
 
-        <div id="cv" class="content-section p-4">
-          <h2>Curriculum Vitae</h2>
-
-          <div class="mb-4">
-              <button type="button" class="btn custom-btn" data-bs-toggle="modal" data-bs-target="#cvModal">
-                  <i class="fas fa-eye me-2"></i>View CV
+        <!-- CV Section -->
+        <div id="cv" class="content-section glass-effect p-4">
+          <div class="d-flex justify-content-between align-items-center flex-wrap border-bottom pb-3">
+            <h2 class="mb-0">Curriculum Vitae</h2>
+            <div class="mt-2 mt-md-0">
+              <button type="button" class="btn custom-btn me-2 mb-2 mb-sm-0" data-bs-toggle="modal" data-bs-target="#cvModal">
+                  <i class="fas fa-eye me-2"></i>View
               </button>
-              <a href="CV/margarette_CV.pdf" class="btn custom-btn" download>
-                  <i class="fas fa-download me-2"></i>Download CV (PDF)
+              <a href="CV/margarette_CV.pdf" class="btn custom-btn mb-2 mb-sm-0" download>
+                  <i class="fas fa-download me-2"></i>PDF
               </a>
+            </div>
           </div>
 
           <h3>Professional Summary</h3>
           <p>A motivated and detail-oriented second-year Information Technology student with hands-on experience in
             front-end web development using HTML, CSS, and JavaScript. Eager to leverage academic knowledge and passion
-            for technology to contribute to a dynamic team. Seeking an internship or entry-level position where I can
-            continue to learn, grow, and apply my problem-solving skills.</p>
+            for technology to contribute to a dynamic team.</p>
+          
           <h3>Education</h3>
           <p><strong>Diploma in Information Technology</strong><br>Polythecnic University of the
-            Philippines<br><em>2023-Present</em></p>
+            Philippines<br><em class="text-muted">2023-Present</em></p>
+          
           <h3>Skills</h3>
           <div class="row">
             <div class="col-md-6">
-              <h4>Technical Skills</h4>
+              <h4 class="h5 mt-2">Technical Skills</h4>
               <ul>
                 <li><strong>Languages:</strong> HTML, CSS, JavaScript </li>
-                <li><strong>Frameworks & Libraries:</strong> Bootstrap </li>
+                <li><strong>Frameworks:</strong> Bootstrap </li>
                 <li><strong>Version Control:</strong> Git, GitHub</li>
-                <li><strong>Tools & Software:</strong> VS Code, Figma (Basic).</li>
+                <li><strong>Tools:</strong> VS Code, Figma (Basic)</li>
               </ul>
             </div>
             <div class="col-md-6">
-              <h4>Soft Skills</h4>
+              <h4 class="h5 mt-2">Soft Skills</h4>
               <ul>
                 <li>Team Collaboration & Communication</li>
                 <li>Problem-Solving & Critical Thinking</li>
                 <li>Adaptability & Eagerness to Learn</li>
-                <li>Time Management & Organization</li>
+                <li>Time Management</li>
               </ul>
             </div>
           </div>
-          <h3>Relevant Experience</h3>
-          <p>As a student, my primary experience comes from academic and personal projects. These have allowed me to
-            apply theoretical knowledge to practical challenges. Please view the <a class="cv-link"
-              id="cv-project-link">Projects</a> section for live demonstrations and detailed examples of my work.</p>
+          
+          <h3>Experience</h3>
+          <p>As a student, my primary experience comes from academic and personal projects. Check out my <a href="#" class="text-primary fw-bold text-decoration-none" id="cv-project-link">Projects</a> section for details.</p>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- CV Modal -->
   <div class="modal fade" id="cvModal" tabindex="-1" aria-labelledby="cvModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
-      <div class="modal-content" style="height: 90vh; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(5px);">
-        <div class="modal-header">
-          <h5 class="modal-title" id="cvModalLabel">CV - Margarette Dela Rosa</h5>
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content" style="height: 85vh;">
+        <div class="modal-header border-bottom-0">
+          <h5 class="modal-title" id="cvModalLabel">CV Preview</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body p-0">
-          <iframe src="CV/Margarette_CV.pdf" style="width: 100%; height: 100%; border: none;" title="Margarette Dela Rosa CV"></iframe>
+        <div class="modal-body p-0 bg-light">
+            <!-- Added fallback for mobile browsers that don't support PDF in iframe -->
+            <object data="CV/Margarette_CV.pdf" type="application/pdf" class="pdf-container">
+                <div class="d-flex align-items-center justify-content-center h-100 text-center p-5">
+                    <div>
+                        <p>Your browser does not support viewing PDFs inline.</p>
+                        <a href="CV/Margarette_CV.pdf" class="btn custom-btn">Download PDF Instead</a>
+                    </div>
+                </div>
+            </object>
         </div>
       </div>
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const navLinks = document.querySelectorAll('.nav-link[data-section]');
@@ -321,19 +407,30 @@
       const cvProjectLink = document.getElementById('cv-project-link');
 
       function showSection(sectionId) {
+        // Hide all sections
         contentSections.forEach(section => {
           section.style.display = 'none';
         });
+        // Show specific section
         const sectionToShow = document.getElementById(sectionId);
         if (sectionToShow) {
           sectionToShow.style.display = 'block';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       }
 
       navLinks.forEach(link => {
         link.addEventListener('click', function (event) {
+          event.preventDefault();
           const sectionId = event.currentTarget.dataset.section;
           showSection(sectionId);
+          
+          // Close mobile menu upon click
+          const navBar = document.getElementById('navbarNav');
+          if (navBar.classList.contains('show')) {
+             const bsCollapse = bootstrap.Collapse.getInstance(navBar);
+             bsCollapse.hide();
+          }
         });
       });
 
@@ -344,10 +441,10 @@
         });
       }
       
+      // Initialize default view
       showSection('about');
     });
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
